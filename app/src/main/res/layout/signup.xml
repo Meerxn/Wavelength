@@ -4,59 +4,53 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".SignupActivity">
 
     <Button
-        android:id="@+id/signIn"
+        android:id="@+id/signup"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="130dp"
-        android:layout_marginTop="43dp"
-        android:layout_marginEnd="131dp"
+        android:layout_marginTop="25dp"
         android:width="150dp"
         android:backgroundTint="#D03D56"
-        android:text="Sign In"
-        android:onClick="toSignUp"
+        android:onClick="toSignIn"
+        android:text="Sign Up"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/forgotPassword" />
-
-    <TextView
-        android:id="@+id/forgotPassword"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="155dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="155dp"
-        android:text="Forgot your password?"
-        android:textColor="#D03D56"
-        android:textSize="10dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/password" />
+        app:layout_constraintTop_toBottomOf="@+id/password2" />
 
     <EditText
         android:id="@+id/password"
         android:layout_width="209dp"
-        android:layout_height="48dp"
-        android:layout_marginStart="101dp"
-        android:layout_marginTop="17dp"
-        android:layout_marginEnd="101dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="12dp"
         android:background="#D3D3D3"
         android:ems="10"
         android:hint="Password"
         android:inputType="textPassword"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/username" />
+        app:layout_constraintTop_toBottomOf="@+id/email" />
+
+    <EditText
+        android:id="@+id/password2"
+        android:layout_width="209dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="12dp"
+        android:background="#D3D3D3"
+        android:ems="10"
+        android:hint="Confirm Password"
+        android:inputType="textPassword"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/password" />
 
     <EditText
         android:id="@+id/username"
         android:layout_width="209dp"
-        android:layout_height="48dp"
-        android:layout_marginStart="101dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="101dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="22dp"
         android:background="#D3D3D3"
         android:ems="10"
         android:hint="NetId"
@@ -65,28 +59,53 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/logo" />
 
+    <EditText
+        android:id="@+id/number"
+        android:layout_width="209dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="12dp"
+        android:background="#D3D3D3"
+        android:ems="10"
+        android:hint="Phone Number"
+        android:inputType="text"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/username" />
+
+    <EditText
+        android:id="@+id/email"
+        android:layout_width="209dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="12dp"
+        android:background="#D3D3D3"
+        android:ems="10"
+        android:hint="Email"
+        android:inputType="text"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/number" />
+
     <TextView
         android:id="@+id/footer"
         android:layout_width="411dp"
         android:layout_height="48dp"
-        android:layout_marginTop="70dp"
+        android:layout_marginTop="35dp"
         android:background="#D03D56"
         android:paddingTop="10dp"
-        android:text="Don't have an account? Sign Up"
-        android:onClick="toSignUp"
+        android:text="Already have an account? Sign In"
+        android:onClick="toSignIn"
         android:textAlignment="center"
         android:textColor="@color/white"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/signIn" />
+        app:layout_constraintTop_toBottomOf="@+id/signup" />
 
     <ImageView
         android:id="@+id/logo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="60dp"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="20dp"
         android:layout_marginEnd="60dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
