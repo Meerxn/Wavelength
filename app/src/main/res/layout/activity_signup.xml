@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Signup">
+
+    <EditText
+        android:id="@+id/password_signup"
+        android:layout_width="209dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="101dp"
+        android:layout_marginTop="28dp"
+        android:layout_marginEnd="101dp"
+        android:background="#D3D3D3"
+        android:ems="10"
+        android:hint="Password"
+        android:inputType="textPassword"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/username_signup" />
+
+    <EditText
+        android:id="@+id/username_signup"
+        android:layout_width="209dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="101dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="101dp"
+        android:background="#D3D3D3"
+        android:ems="10"
+        android:hint="NetId"
+        android:inputType="text"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/logo_signup" />
+
+    <ImageView
+        android:id="@+id/logo_signup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="60dp"
+        android:layout_marginTop="51dp"
+        android:layout_marginEnd="60dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/screenshot_2021_11_09_at_11_27_17_pm" />
+
+    <Button
+        android:id="@+id/signUp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="130dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="131dp"
+        android:width="150dp"
+        android:backgroundTint="#D03D56"
+        android:onClick="confirmSignUp"
+        android:text="Sign UP"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/password_signup" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

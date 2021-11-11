@@ -15,6 +15,7 @@
         android:layout_marginEnd="131dp"
         android:width="150dp"
         android:backgroundTint="#D03D56"
+        android:onClick="clickSignIn"
         android:text="Sign In"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -37,7 +38,7 @@
     <EditText
         android:id="@+id/password"
         android:layout_width="209dp"
-        android:layout_height="35dp"
+        android:layout_height="48dp"
         android:layout_marginStart="101dp"
         android:layout_marginTop="17dp"
         android:layout_marginEnd="101dp"
@@ -52,7 +53,7 @@
     <EditText
         android:id="@+id/username"
         android:layout_width="209dp"
-        android:layout_height="35dp"
+        android:layout_height="48dp"
         android:layout_marginStart="101dp"
         android:layout_marginTop="20dp"
         android:layout_marginEnd="101dp"
@@ -64,20 +65,24 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/logo" />
 
-    <TextView
+    <Button
         android:id="@+id/footer"
         android:layout_width="411dp"
-        android:layout_height="35dp"
+        android:layout_height="48dp"
         android:layout_marginTop="70dp"
-        android:background="#D03D56"
+        android:backgroundTint="#D03D56"
+        android:onClick="clickSignUp"
         android:paddingTop="10dp"
         android:text="Don't have an account? Sign Up"
         android:textAlignment="center"
+        android:textAllCaps="false"
         android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/signIn" />
+        app:layout_constraintTop_toBottomOf="@+id/signIn"
+        app:layout_constraintVertical_bias="0.842" />
 
     <ImageView
         android:id="@+id/logo"
