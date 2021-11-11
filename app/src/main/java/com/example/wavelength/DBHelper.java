@@ -13,4 +13,10 @@ public class DBHelper {
         sqLiteDatabase.execSQL("CREATE TABLE IF NOT EXISTS users" +
                 "(id INTEGER PRIMARY KEY,username TEXT, password TEXT)");
     }
+
+    public void onSignup(String username, String password){
+        createTable();
+        sqLiteDatabase.execSQL((String.format("INSERT INTO users (username,password) VALUES ('%s','%s')",
+                username,password)));
+    }
 }
