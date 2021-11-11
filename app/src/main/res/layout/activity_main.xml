@@ -16,6 +16,7 @@
         android:width="150dp"
         android:backgroundTint="#D03D56"
         android:text="Sign In"
+        android:onClick="toHomepage"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/forgotPassword" />
@@ -65,7 +66,7 @@
         app:layout_constraintTop_toBottomOf="@+id/logo" />
 
     <TextView
-        android:id="@+id/footer"
+        android:id="@+id/header"
         android:layout_width="411dp"
         android:layout_height="48dp"
         android:layout_marginTop="70dp"

@@ -86,7 +86,7 @@
         app:layout_constraintTop_toBottomOf="@+id/number" />
 
     <TextView
-        android:id="@+id/footer"
+        android:id="@+id/header"
         android:layout_width="411dp"
         android:layout_height="48dp"
         android:layout_marginTop="35dp"
