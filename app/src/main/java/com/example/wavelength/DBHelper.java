@@ -1,6 +1,7 @@
 package com.example.wavelength;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
 
 public class DBHelper {
     SQLiteDatabase sqLiteDatabase;
@@ -22,8 +23,11 @@ public class DBHelper {
     // checks if user is valid or not
     public boolean onLogin(String username,String password){
         createTable();
-        Cursor c = sqLiteDatabase.rawQuery(String.format("SELECT * FROM users where username like '%s' and password like '%s",username,password),null);
-        c.moveToFirst();
+        Cursor c = sqLiteDatabase.rawQuery(String.format("SELECT * FROM users where username like '%s' and password like '%s'",username,password),null);
+        try{c.moveToFirst();}
+        catch (NullPointerException e){
+            Log.i("errormsg", "NULL HERE");
+        }
         //Test this to see empty record or not
         int icount = c.getCount();
         c.close();

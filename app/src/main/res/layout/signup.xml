@@ -18,10 +18,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/password2" />
+        app:layout_constraintTop_toBottomOf="@+id/password2_su" />
 
     <EditText
-        android:id="@+id/password"
+        android:id="@+id/password_su"
         android:layout_width="209dp"
         android:layout_height="30dp"
         android:layout_marginTop="12dp"
@@ -34,7 +34,7 @@
         app:layout_constraintTop_toBottomOf="@+id/email" />
 
     <EditText
-        android:id="@+id/password2"
+        android:id="@+id/password2_su"
         android:layout_width="209dp"
         android:layout_height="30dp"
         android:layout_marginTop="12dp"
@@ -44,10 +44,10 @@
         android:inputType="textPassword"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/password" />
+        app:layout_constraintTop_toBottomOf="@+id/password_su" />
 
     <EditText
-        android:id="@+id/username"
+        android:id="@+id/username_su"
         android:layout_width="209dp"
         android:layout_height="30dp"
         android:layout_marginTop="22dp"
@@ -57,7 +57,7 @@
         android:inputType="text"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/logo" />
+        app:layout_constraintTop_toBottomOf="@+id/logo_su" />
 
     <EditText
         android:id="@+id/number"
@@ -70,7 +70,7 @@
         android:inputType="text"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/username" />
+        app:layout_constraintTop_toBottomOf="@+id/username_su" />
 
     <EditText
         android:id="@+id/email"
@@ -101,7 +101,7 @@
         app:layout_constraintTop_toBottomOf="@+id/signup" />
 
     <ImageView
-        android:id="@+id/logo"
+        android:id="@+id/logo_su"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="60dp"
