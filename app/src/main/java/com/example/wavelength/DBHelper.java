@@ -26,12 +26,15 @@ public class DBHelper {
         c.moveToFirst();
         //Test this to see empty record or not
         int icount = c.getCount();
-        c.close();
-        sqLiteDatabase.close();
+
         if(icount <= 0){
+            c.close();
+            sqLiteDatabase.close();
             return false;
         }
         else{
+            c.close();
+            sqLiteDatabase.close();
             return true;
         }
 
