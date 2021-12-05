@@ -23,24 +23,10 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-
-        <TextView
-            android:id="@+id/header_homepage"
-            android:layout_width="411dp"
-            android:layout_height="48dp"
-            android:background="#CA584A"
-            android:paddingTop="10dp"
-            android:text=""
-            android:textAlignment="center"
-            android:textColor="@color/white"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
         <EditText
             android:id="@+id/searchbar"
             android:layout_width="match_parent"
-            android:layout_height="40dp"
+            android:layout_height="48dp"
             android:layout_margin="5dp"
             android:layout_marginStart="5dp"
             android:layout_marginTop="60dp"
@@ -48,17 +34,9 @@
             android:drawableLeft="@drawable/ic_search"
             android:ems="10"
             android:gravity="center"
-            app:layout_constraintEnd_toEndOf="@id/header_homepage"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="@id/header_homepage"
-            app:layout_constraintTop_toBottomOf="@+id/header_homepage" />
-
-        <ImageView
-            android:id="@+id/logo2"
-            android:layout_width="62dp"
-            android:layout_height="48dp"
-            android:src="@drawable/logo2"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
@@ -91,7 +69,7 @@
             android:layout_marginTop="179dp"
             android:text="Current reservations"
             android:textColor="#2086D5"
-            android:textSize="15dp"
+            android:textSize="20dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/location" />
 
@@ -154,6 +132,7 @@
             android:layout_height="105dp"
             android:layout_marginStart="28dp"
             android:layout_marginTop="22dp"
+            android:onClick="onRoomClick"
             android:src="@drawable/grainger_pic1"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/location" />
@@ -163,8 +142,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="28dp"
-            android:text="Grainger Library"
-            android:textSize="10dp"
+            android:minHeight="48dp"
+            android:onClick="onRoomClick"
+            android:text="Business Library, Bus2111"
+            android:textColor="#3F51B5"
+            android:textSize="13.6sp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/imageView2" />
