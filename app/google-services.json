@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "799713602294",
+    "project_id": "wavelength-f4323",
+    "storage_bucket": "wavelength-f4323.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:799713602294:android:b1c1fa9558db65bbfd5ad7",
+        "android_client_info": {
+          "package_name": "com.example.wavelength"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "799713602294-0d8ruptia7qvkp35e2i8qoj9jn3fglll.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDtnFTR9FxhK4_pFs5o9ftexqx6TMaamsM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "799713602294-0d8ruptia7qvkp35e2i8qoj9jn3fglll.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
