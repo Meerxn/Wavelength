@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
+import android.app.TimePickerDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
@@ -14,13 +15,19 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.DatePicker;
 import android.widget.TextView;
+import android.widget.TimePicker;
 
 import java.util.Calendar;
+import java.util.Locale;
 
 public class RoomActvitiy extends AppCompatActivity {
     TextView libName;
     TextView roomName;
     TextView date;
+    TextView startTime;
+    TextView endTime;
+    int startHour, startMinute;
+    int endHour, endMinute;
     private DatePickerDialog datePickerDialog;
 
 
@@ -49,6 +56,50 @@ public class RoomActvitiy extends AppCompatActivity {
         date = (TextView) findViewById(R.id.date_text);
         date.setText(todayDate());
 
+        startTime = (TextView)findViewById(R.id.start_text);
+        endTime = (TextView)findViewById(R.id.end_text);
+
+    }
+
+    public void showStartTimePicker(View view)
+    {
+        TimePickerDialog.OnTimeSetListener onTimeSetListener = new TimePickerDialog.OnTimeSetListener()
+        {
+            @Override
+            public void onTimeSet(TimePicker timePicker, int selectedHour, int selectedMinute)
+            {
+                startHour = selectedHour;
+                startMinute = selectedMinute;
+                startTime.setText(String.format(Locale.getDefault(), "%02d:%02d",startHour, startMinute));
+            }
+        };
+
+        int style = AlertDialog.THEME_HOLO_DARK;
+
+        TimePickerDialog timePickerDialog = new TimePickerDialog(this, style, onTimeSetListener, startHour, startMinute, true);
+        timePickerDialog.setTitle("Select Start Time");
+        timePickerDialog.show();
+    }
+
+    public void showEndTimePicker(View view)
+    {
+        TimePickerDialog.OnTimeSetListener onTimeSetListener = new TimePickerDialog.OnTimeSetListener()
+        {
+            @Override
+            public void onTimeSet(TimePicker timePicker, int selectedHour, int selectedMinute)
+            {
+                endHour = selectedHour;
+                endMinute = selectedMinute;
+                endTime.setText(String.format(Locale.getDefault(), "%02d:%02d", endHour, endMinute));
+            }
+        };
+
+        int style = AlertDialog.THEME_HOLO_DARK;
+
+        TimePickerDialog timePickerDialog = new TimePickerDialog(this, style, onTimeSetListener, endHour, endMinute, true);
+
+        timePickerDialog.setTitle("Select End Time");
+        timePickerDialog.show();
     }
 
     public void showDatePickerDialog(View view){
