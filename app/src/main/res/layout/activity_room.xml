@@ -6,28 +6,78 @@
     android:layout_height="match_parent"
     tools:context=".RoomActvitiy">
 
+
     <TextView
         android:id="@+id/libName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="28dp"
-        android:layout_marginBottom="37dp"
+        android:layout_marginTop="6dp"
         android:fontFamily="@font/reem_kufi"
         android:textColor="@android:color/black"
-        android:text="TextView"
         android:textSize="25sp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.501"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <TextView
+        android:id="@+id/roomName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/reem_kufi"
+        android:text=""
+        android:textColor="@android:color/black"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/libName" />
+
     <View
+        android:id="@+id/view5"
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:background="@android:color/black"
-        app:layout_constraintTop_toBottomOf="@id/libName"/>
+        app:layout_constraintTop_toBottomOf="@id/roomName" />
 
+    <TextView
+        android:id="@+id/date_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/reem_kufi"
+        android:text=""
+        android:textColor="#595959"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/view5"
+        app:layout_constraintVertical_bias="0.028" />
 
+    <TextView
+        android:id="@+id/show_dialog"
+        android:layout_width="47dp"
+        android:layout_height="26dp"
+        android:layout_marginStart="158dp"
+        android:minWidth="48dp"
+        android:minHeight="48dp"
+        android:onClick="showDatePickerDialog"
+        android:text="change"
+        android:textColor="#3733F9"
+        android:textSize="13sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/date_text" />
 
+    <ImageView
+        android:layout_width="192dp"
+        android:layout_height="125dp"
+        android:src="@drawable/grainger_pic1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/show_dialog" />
+
+   
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
