@@ -35,10 +35,6 @@ public class HomepageActivity extends AppCompatActivity {
         bottomNavigationView = findViewById(R.id.bottomnav);
         bottomNavigationView.setOnItemSelectedListener(bottomnavFunction);
 
-        welcome = (TextView) findViewById(R.id.welcome);
-        Intent intent = getIntent();
-        String message = intent.getStringExtra("username");
-        welcome.setText("Hello "+ message+ "!");
 
     }
 
