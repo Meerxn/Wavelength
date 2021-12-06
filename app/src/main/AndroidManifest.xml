@@ -10,6 +10,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Wavelength">
         <activity
+            android:name=".Confirmation_Page"
+            android:exported="true" />
+        <activity
+            android:name=".user_profile"
+            android:exported="true" />
+        <activity
             android:name=".HomepageActivity"
             android:exported="true" />
         <activity

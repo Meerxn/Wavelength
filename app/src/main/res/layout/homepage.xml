@@ -12,12 +12,12 @@
         android:layout_height="match_parent" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottomnav"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/bottomnav"
         android:layout_alignParentBottom="true"
         android:background="?android:attr/windowBackground"
-        app:menu="@menu/menu"/>
+        app:menu="@menu/menu" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -60,6 +60,28 @@
             android:src="@drawable/logo2"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
+<!--        <com.smarteist.autoimageslider.SliderView-->
+<!--            android:id="@+id/slider"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="150dp"-->
+<!--            android:layout_centerInParent="true"-->
+<!--            android:layout_marginTop="175dp"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"-->
+<!--            app:layout_constraintTop_toTopOf="parent"-->
+<!--            app:sliderAnimationDuration="600"-->
+<!--            app:sliderAutoCycleDirection="back_and_forth"-->
+<!--            app:sliderIndicatorAnimationDuration="600"-->
+<!--            app:sliderIndicatorEnabled="true"-->
+<!--            app:sliderIndicatorGravity="center_horizontal|bottom"-->
+<!--            app:sliderIndicatorMargin="15dp"-->
+<!--            app:sliderIndicatorOrientation="horizontal"-->
+<!--            app:sliderIndicatorPadding="3dp"-->
+<!--            app:sliderIndicatorRadius="2dp"-->
+<!--            app:sliderIndicatorSelectedColor="#5A5A5A"-->
+<!--            app:sliderIndicatorUnselectedColor="#FFF"-->
+<!--            app:sliderScrollTimeInSec="1" />-->
+
 
         <TextView
             android:id="@+id/available"
