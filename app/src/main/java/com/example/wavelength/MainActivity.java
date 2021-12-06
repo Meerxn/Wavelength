@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.util.Log;
@@ -31,14 +32,23 @@ public class MainActivity extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
 
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main); //Test
+        SharedPreferences sharedPreferences = getSharedPreferences("com.example.wavelength", Context.MODE_PRIVATE);
+        if(!sharedPreferences.getString("username", "").equals("")){
+            String storedname = sharedPreferences.getString("username", "");
+            Intent intent = new Intent(this, HomepageActivity.class);
+            intent.putExtra("username", storedname);
+            startActivity(intent);
+        }
+        else {
+            setContentView(R.layout.activity_main);
+        }
 
         usernamebox = (EditText) findViewById(R.id.username);
         passwordbox = (EditText) findViewById(R.id.password);
 
-        Intent intent = getIntent();
-        usernamebox.setText(intent.getStringExtra("username_su"));
-        passwordbox.setText(intent.getStringExtra("password_su")); //Getting username and password from sign up page
+//        Intent intent = getIntent();
+//        usernamebox.setText(intent.getStringExtra("username_su"));
+//        passwordbox.setText(intent.getStringExtra("password_su")); //Getting username and password from sign up page
 
 
     }
@@ -82,6 +92,8 @@ public class MainActivity extends AppCompatActivity {
         } else {
             Intent intent = new Intent(this, HomepageActivity.class);
             intent.putExtra("username", usernamebox.getText().toString());
+            SharedPreferences sharedPreferences = getSharedPreferences("com.example.wavelength", Context.MODE_PRIVATE);
+            sharedPreferences.edit().putString("username",usernamebox.getText().toString()).apply();
             startActivity(intent);
         }
     }
