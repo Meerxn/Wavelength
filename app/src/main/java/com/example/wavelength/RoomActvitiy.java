@@ -14,6 +14,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.DatePicker;
+import android.widget.NumberPicker;
 import android.widget.TextView;
 import android.widget.TimePicker;
 
@@ -70,6 +71,7 @@ public class RoomActvitiy extends AppCompatActivity {
             {
                 startHour = selectedHour;
                 startMinute = selectedMinute;
+                fixStartMinute();
                 startTime.setText(String.format(Locale.getDefault(), "%02d:%02d",startHour, startMinute));
             }
         };
@@ -90,6 +92,7 @@ public class RoomActvitiy extends AppCompatActivity {
             {
                 endHour = selectedHour;
                 endMinute = selectedMinute;
+                fixEndMinute();
                 endTime.setText(String.format(Locale.getDefault(), "%02d:%02d", endHour, endMinute));
             }
         };
@@ -100,6 +103,43 @@ public class RoomActvitiy extends AppCompatActivity {
 
         timePickerDialog.setTitle("Select End Time");
         timePickerDialog.show();
+    }
+    public void fixEndMinute(){
+        Log.i("END MINUTE", String.valueOf(endMinute));
+        if(endMinute >= 0 && endMinute < 15){
+            endMinute = 0;
+        }
+        else if(endMinute >= 15 && endMinute < 45){
+            endMinute = 30;
+        }
+        else if(endMinute >= 45){
+            endMinute = 0;
+            if(endHour == 23){
+                endHour = 0;
+            }
+            else{
+                endHour++;
+            }
+        }
+    }
+
+    public void fixStartMinute(){
+        Log.i("START MINUTE", String.valueOf(startMinute));
+        if(startMinute >= 0 && startMinute < 15){
+            startMinute = 0;
+        }
+        else if(startMinute >= 15 && startMinute < 45){
+            startMinute = 30;
+        }
+        else if(startMinute >= 45){
+            startMinute = 0;
+            if(startHour == 23){
+                startHour = 0;
+            }
+            else{
+                startHour++;
+            }
+        }
     }
 
     public void showDatePickerDialog(View view){
