@@ -27,4 +27,37 @@ public class CSVRead {
     List<String> reservedTimes = new ArrayList<>();;
     List<String> intervals = new ArrayList<>(26);
     List<String> times = new ArrayList<>(26);
+
+    public List<String> getReservedTimes() {
+        return reservedTimes;
+    }
+
+    public List<String> getTimes() {
+        return times;
+    }
+
+    public void readCSV(InputStream stream) {
+        try {
+            CSVReader reader = new CSVReader(new InputStreamReader(stream));
+            String[] nextLine;
+
+            // populate our lists which will contain info about each room
+            while ((nextLine = reader.readNext()) != null) {
+                roomID.add(nextLine[0]);
+                libName.add(nextLine[1]);
+                openTime.add(nextLine[2]);
+                closeTime.add(nextLine[3]);
+                reservedTimes.add(nextLine[4]);
+            }
+
+            
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+
+
+
 }
