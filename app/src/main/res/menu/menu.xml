@@ -6,9 +6,9 @@
         android:icon="@drawable/ic_home" />
 
     <item
-        android:id="@+id/event"
-        android:title="Events"
-        android:icon="@drawable/ic_event" />
+        android:id="@+id/maps"
+        android:title="Map"
+        android:icon="@drawable/ic_map" />
 
     <item
         android:id="@+id/reservation"
