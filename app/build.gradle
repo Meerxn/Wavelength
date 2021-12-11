@@ -49,6 +49,9 @@ dependencies {
     // For example, declare the dependencies for Firebase Authentication and Cloud Firestore
     implementation 'com.google.firebase:firebase-auth'
     implementation 'com.google.firebase:firebase-firestore'
+    implementation 'com.opencsv:opencsv:5.5.2'
 
+    implementation 'androidx.recyclerview:recyclerview:1.2.1'
+    implementation "androidx.cardview:cardview:1.0.0"
 
 }
