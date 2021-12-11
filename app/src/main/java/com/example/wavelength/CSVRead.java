@@ -50,12 +50,14 @@ public class CSVRead {
                 reservedTimes.add(nextLine[4]);
             }
 
-            
+
         }
         catch (Exception e) {
             e.printStackTrace();
         }
     }
+
+
 
 
 
