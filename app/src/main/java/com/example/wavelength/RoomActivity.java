@@ -21,7 +21,7 @@ import android.widget.TimePicker;
 import java.util.Calendar;
 import java.util.Locale;
 
-public class RoomActvitiy extends AppCompatActivity {
+public class RoomActivity extends AppCompatActivity {
     TextView libName;
     TextView roomName;
     TextView date;
@@ -59,6 +59,10 @@ public class RoomActvitiy extends AppCompatActivity {
 
         startTime = (TextView)findViewById(R.id.start_text);
         endTime = (TextView)findViewById(R.id.end_text);
+
+        CSVRead read = new CSVRead();
+        
+
 
     }
 

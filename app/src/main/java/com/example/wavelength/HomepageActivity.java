@@ -56,7 +56,7 @@ public class HomepageActivity extends AppCompatActivity {
     public void goToRoomActivity(String roomName) {
         //String message = String.valueOf(answer);
         Log.i("JUST ROOM", roomName.split(", ")[1]);
-        Intent intent = new Intent(this, RoomActvitiy.class);
+        Intent intent = new Intent(this, RoomActivity.class);
         intent.putExtra("libName", roomName);
         startActivity(intent);
     }
