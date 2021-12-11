@@ -24,7 +24,6 @@ import com.google.firebase.auth.FirebaseUser;
 public class MainActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private static final String TAG = "EmailPassword";
-    private boolean success;
     EditText usernamebox;
     EditText passwordbox;
 
@@ -58,12 +57,7 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, SignupActivity.class);
         startActivity(intent);
     }
-
-    public void toHomepage(View view) {
-
-        Context context = getApplicationContext();
-        SQLiteDatabase sqLiteDatabase = context.openOrCreateDatabase("users", Context.MODE_PRIVATE, null);
-        DBHelper dbHelper = new DBHelper(sqLiteDatabase);
+    public void fireBaseLogin(View view){
         String email = usernamebox.getText().toString();
         String password = passwordbox.getText().toString();
         //boolean success = dbHelper.onLogin(usernamebox.getText().toString(), passwordbox.getText().toString());
@@ -72,13 +66,13 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
-                            success = true;
 
                             // Sign in success, update UI with the signed-in user's information
+                            toHomepage(view,1);
                             Log.d(TAG, "signInWithEmail:success");
                             FirebaseUser user = mAuth.getCurrentUser();
                         } else {
-                            success = false;
+                            toHomepage(view,1);
 
                             // If sign in fails, display a message to the user.
                             Log.w(TAG, "signInWithEmail:failure", task.getException());
@@ -86,8 +80,36 @@ public class MainActivity extends AppCompatActivity {
                         }
                     }
                 });
+    }
+    public void toHomepage(View view, int status) {
 
-        if (!success) {
+        Context context = getApplicationContext();
+        SQLiteDatabase sqLiteDatabase = context.openOrCreateDatabase("users", Context.MODE_PRIVATE, null);
+        DBHelper dbHelper = new DBHelper(sqLiteDatabase);
+        String email = usernamebox.getText().toString();
+        String password = passwordbox.getText().toString();
+        //boolean success = dbHelper.onLogin(usernamebox.getText().toString(), passwordbox.getText().toString());
+//        mAuth.signInWithEmailAndPassword(email, password)
+//                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+//                    @Override
+//                    public void onComplete(@NonNull Task<AuthResult> task) {
+//                        if (task.isSuccessful()) {
+//                            success = true;
+//
+//                            // Sign in success, update UI with the signed-in user's information
+//                            Log.d(TAG, "signInWithEmail:success");
+//                            FirebaseUser user = mAuth.getCurrentUser();
+//                        } else {
+//                            success = false;
+//
+//                            // If sign in fails, display a message to the user.
+//                            Log.w(TAG, "signInWithEmail:failure", task.getException());
+//
+//                        }
+//                    }
+//                });
+
+        if (status == 0) {
             Toast.makeText(this, "Unsuccessful signin", Toast.LENGTH_SHORT).show();
             Log.i("pass", "WE passed");
         } else {
