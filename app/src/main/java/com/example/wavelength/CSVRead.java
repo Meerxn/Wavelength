@@ -65,6 +65,15 @@ public class CSVRead {
         }
     }
 
+    public void updateSchedule(RecyclerView id, Context context) {
+        Log.d("HELLO", "updateSchedule: called.");
+        LinearLayoutManager layoutManager = new LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false);
+        RecyclerView recyclerview = id;
+        recyclerview.setLayoutManager(layoutManager);
+        DataAdapter adapter = new DataAdapter(intervals, times, context, map);
+        recyclerview.setAdapter(adapter);
+    }
+
     /*
 This method goes through all the time intervals and creates a list of
 all 30 minute slots that are reserved. These 30 minute time slots that are
