@@ -20,6 +20,7 @@ public class HomepageActivity extends AppCompatActivity {
     private NavigationBarView bottomNavigationView;
     private TextView welcome;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,6 +34,7 @@ public class HomepageActivity extends AppCompatActivity {
         String message = intent.getStringExtra("username");
         welcome.setText("Hello "+ message+ "!");
 
+        getSupportFragmentManager().beginTransaction().replace(R.id.container, new HomeFragment()).commit();
     }
 
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -65,6 +67,9 @@ public class HomepageActivity extends AppCompatActivity {
             switch (item.getItemId()){
                 case R.id.home:
                     fragment = new HomeFragment();
+                    break;
+                case R.id.maps:
+                    fragment = new MapsFragment();
                     break;
             }
             getSupportFragmentManager().beginTransaction().replace(R.id.container, fragment).commit();
