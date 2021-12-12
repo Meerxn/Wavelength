@@ -31,8 +31,6 @@ public class RoomActivity extends AppCompatActivity {
     int endHour, endMinute;
     private DatePickerDialog datePickerDialog;
 
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -61,8 +59,8 @@ public class RoomActivity extends AppCompatActivity {
         endTime = (TextView)findViewById(R.id.end_text);
 
         CSVRead read = new CSVRead();
-        read.readCSV(getResources().openRawResource(R.raw.data));
-        read.updateReservations();
+        read.readCSV(getResources().openRawResource(R.raw.roomdata));
+        read.updateReservations(roomNameStr);
         read.updateSchedule(findViewById(R.id.recyclerview), this);
 
 

@@ -74,14 +74,24 @@ public class CSVRead {
         recyclerview.setAdapter(adapter);
     }
 
+    public int getCSVRow(String room) {
+        int index = 0;
+        for (int i = 0; i < roomID.size(); i++) {
+            if (room.equals(roomID.get(i))) {
+                index = i;
+            }
+        }
+        return index;
+    }
+
     /*
 This method goes through all the time intervals and creates a list of
 all 30 minute slots that are reserved. These 30 minute time slots that are
 in the list will be blocked in red color.
  */
-    public void updateReservations() {
-        Log.d("CHECKKK", reservedTimes.toString());
-        String[] arr = reservedTimes.get(15).split(","); // all reserved ranges for one room
+    public void updateReservations(String room) {
+        int index = getCSVRow(room);
+        String[] arr = reservedTimes.get(index).split(","); // all reserved ranges for one room
         //String[] arr = {"09:00-10:30","12:00-14:00","14:00-16:00"};
         List<String> allBookedPositions = new ArrayList<>();
         for (String str : arr) {
