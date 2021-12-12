@@ -35,8 +35,8 @@ public class MainActivity extends AppCompatActivity {
     private static final String TAG = "EmailPassword";
     public static ArrayList<Reservation> notes = new ArrayList<>();;
 
-    EditText usernamebox;
-    EditText passwordbox;
+    public EditText usernamebox;
+    public EditText passwordbox;
     private ActivityResultLauncher<String> mPermissionResult = registerForActivityResult(
             new ActivityResultContracts.RequestPermission(),
             new ActivityResultCallback<Boolean>() {
@@ -83,11 +83,14 @@ public class MainActivity extends AppCompatActivity {
     public void fireBaseLogin(View view){
         String email = usernamebox.getText().toString();
         String password = passwordbox.getText().toString();
+
+
+
         Context context = getApplicationContext();
         SQLiteDatabase sqLiteDatabase = context.openOrCreateDatabase("notes", Context.MODE_PRIVATE,null);
         DBHelper dbHelper = new DBHelper(mAuth,sqLiteDatabase);
-        dbHelper.onAddData(email,"Grainger", "001","5:00","5:30","2/10/2021");
-        dbHelper.onAddData(email,"College Library", "001","5:00","5:30","2/10/2021");
+        dbHelper.onAddData(email,"Social", "001","5:00","5:30","2/10/2021");
+        dbHelper.onAddData(email,"Memorial Library", "001","5:00","5:30","2/10/2021");
         notes = dbHelper.readNotes(email);
         for (Reservation note : notes){
             Log.d("here",note.getLibraryName());

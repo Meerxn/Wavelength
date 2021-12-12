@@ -1,5 +1,7 @@
 package com.example.wavelength.placeholder;
 
+import com.example.wavelength.Reservation;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -17,19 +19,19 @@ public class PlaceholderContent {
     /**
      * An array of sample (placeholder) items.
      */
-    public static final List<PlaceholderItem> ITEMS = new ArrayList<PlaceholderItem>();
+    public static final List<Reservation> ITEMS = new ArrayList<Reservation>();
 
 
 
     private static final int COUNT = 25;
 
-    static {
-        addItem(new PlaceholderItem("GR1", "123", "456", "Grainger", "12/12/21"));
-        addItem(new PlaceholderItem("BUS1", "123", "756", "Business", "12/12/21"));
-        addItem(new PlaceholderItem("SOC1", "23", "456", "Soc", "12/12/21"));
-    }
+//    static {
+//        addItem(new PlaceholderItem("GR1", "123", "456", "Grainger", "12/12/21"));
+//        addItem(new PlaceholderItem("BUS1", "123", "756", "Business", "12/12/21"));
+//        addItem(new PlaceholderItem("SOC1", "23", "456", "Soc", "12/12/21"));
+//    }
 
-    private static void addItem(PlaceholderItem item) {
+    public static void addItem(Reservation item) {
         ITEMS.add(item);
 //        ITEM_MAP.put(item.id, item);
     }
