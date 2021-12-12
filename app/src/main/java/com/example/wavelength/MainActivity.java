@@ -1,5 +1,8 @@
 package com.example.wavelength;
 
+import androidx.activity.result.ActivityResultCallback;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -25,6 +28,18 @@ public class MainActivity extends AppCompatActivity {
     private static final String TAG = "EmailPassword";
     EditText usernamebox;
     EditText passwordbox;
+    private ActivityResultLauncher<String> mPermissionResult = registerForActivityResult(
+            new ActivityResultContracts.RequestPermission(),
+            new ActivityResultCallback<Boolean>() {
+                @Override
+                public void onActivityResult(Boolean result) {
+                    if(result) {
+                        Log.e("perm", "onActivityResult: PERMISSION GRANTED");
+                    } else {
+                        Log.e("perm", "onActivityResult: PERMISSION DENIED");
+                    }
+                }
+            });
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -119,4 +134,6 @@ public class MainActivity extends AppCompatActivity {
             startActivity(intent);
         }
     }
+
+
 }
