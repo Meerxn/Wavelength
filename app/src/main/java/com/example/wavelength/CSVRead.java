@@ -41,6 +41,8 @@ public class CSVRead {
         return intervals;
     }
 
+    public List<String> getReservedTimes(){ return reservedTimes;}
+
     public void readCSV(InputStream stream) {
         try {
             CSVReader reader = new CSVReader(new InputStreamReader(stream));
