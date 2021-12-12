@@ -66,7 +66,9 @@ public class MainActivity extends AppCompatActivity {
         String email = usernamebox.getText().toString();
         String password = passwordbox.getText().toString();
         DBHelper dbHelper = new DBHelper(mAuth);
-        dbHelper.addData("CL001","December 8th 12:20:00", "December 8th 12:50:00","College Library");
+        Log.d("Here","xyz" + dbHelper.checkValue());
+
+        //dbHelper.addData("CL001","December 8th 12:20:00", "December 8th 12:50:00","College Library");
 
 
 

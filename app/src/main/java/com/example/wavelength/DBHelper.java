@@ -21,6 +21,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
 
@@ -30,9 +31,12 @@ import java.util.Map;
 
 public class DBHelper {
     FirebaseAuth mauth;
+    Map<String,Object>currHash;
+
 
     public DBHelper(FirebaseAuth author) {
         this.mauth = author;
+        currHash = new HashMap<>();
     }
 // Function to create the users table
 
@@ -52,8 +56,26 @@ public class DBHelper {
         playerMap.put("end_time",endtime);
         docRef.update("Past Bookings", FieldValue.arrayUnion(playerMap));
     }
-    public boolean onLogin(FirebaseAuth mauth){
-        return false;
+    public Map<String,Object> checkValue(){
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        DocumentReference docRef = db.collection("reservations").document("fardeen7210@gmail.com");
+        docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                if (task.isSuccessful()) {
+                    DocumentSnapshot document = task.getResult();
+                    if (document.exists()) {
+                        Log.d("Here", "DocumentSnapshot data: " + document.getData());
+                        currHash = document.getData();
+
+                    } else {
+                        Log.d("bye", "No such document");
+                    }
+                } else {
+                    Log.d("jj", "get failed with ", task.getException());
+                }
+            }
+        });
 
 //        createTable();
 //        Cursor c = sqLiteDatabase.rawQuery(String.format("SELECT * FROM users where username like '%s' and password like '%s'",username,password),null);
@@ -71,6 +93,6 @@ public class DBHelper {
 //        else{
 //            return true;
 //        }
-
+        return currHash;
     }
 }
