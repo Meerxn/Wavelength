@@ -42,10 +42,48 @@ public class DBHelper {
         this.sqLiteDatabase = sqLiteDatabase;
 
     }
+    public void libInit(){
+        sqLiteDatabase.execSQL("CREATE TABLE IF NOT EXISTS libraries1" +
+                "(roomID TEXT ,name TEXT, start_time TEXT,end_time TEXT,reserved_time Text)");
+        String[][] libraries = {{"Mem379",	"Memorial Library"	,"9:00","22:00" , "09:00-10:30,12:00-14:00,14:00-16:00"},
+                {"Mem477"	,"Memorial Library","9:00",	"22:00","10:00-13:00,13:00-14:00,17:00-18:00,20:00-22:00"},
+                { "Mem479"	,"Memorial Library",	"9:00","22:00"	,"09:00-11:00,15:00-17:00"},
+                {"Mem777"	, "Memorial Library",	"9:00"	,"22:00","10:00-12:00,12:30-14:00"},
+                {"Mem779","Memorial Library", "9:00",	 "22:00", 	"09:30-12:00,14:00-16:00,16:00-18:00"},
+                {"Col2203","College Library","7:30","0:00","09:00-10:00,10:00-13:00,16:00-17:15"},
+                {"Col2205","College Library","7:30","0:00","09:00-11:00,15:00-17:00"},
+                {"Col2217","College Library","7:30","0:00","09:30-10:00,12:00-14:15,17:00-20:00"},
+                {"Col2258","College Library","7:30","0:00","10:00-12:00,13:00-15:30,17:00-19:00,19:00-22:00"},
+                {"Col3203","College Library","7:30","0:00","10:00-12:00,12:30-14:00,14:00-17:15"},
+                {"Ste101",	"Steenbock Library"	,"9:00",	"22:00" ,	"09:00-10:30,14:00-16:00"},
+                {"Ste103",	 "Steenbock Library", "9:00"	,"22:00",	"08:00-10:00,10:00-13:00,16:00-17:15"},
+                {"Ste108"	,"Steenbock Library",	"9:00",	"22:00"	,"10:00-13:00,13:00-14:00,17:00-18:00,20:00-22:00"},
+                {"Ste111"	,"Steenbock Library",	"9:00",	"22:00",	"09:00-12:00,12:30-14:00,15:00-16:15"},
+                {"Ste115","Steenbock Library",	"9:00",	"22:00",	"09:30-12:00,14:00-16:00,16:00-18:00"},
+                {"Bus2111", "Business Library",	"8:00"	,"23:00","10:00-12:00,13:00-15:30,17:00-19:00,19:00-21:30"},
+                {"Bus2135","Business Library","8:00","23:00","10:00-12:00,12:30-14:00,14:00-17:15"},
+                {"Bus2210D","Business Library","8:00","23:00",	"09:00-10:30,14:00-16:00,17:00-18:30"},
+                {"Bus3210C","Business Library","8:00","23:00","09:00-10:00,10:00-13:00,16:00-17:15"},
+                {"Bus3210G","Business Library","8:00","23:00","10:00-13:00,13:00-14:00,15:00-17:30,17:30-19:00,20:00-22:00"},
+                {"Soc142","Social Work Library","8:30","18:00","09:00-10:30,14:00-16:00,17:00-18:00"},
+                {"Soc143","Social Work Library","8:30","18:00","09:30-10:00,10:30-13:30,13:30-16:00,16:00-17:15"},
+        };
+        for(int i = 0 ; i < libraries.length; i++){
+            sqLiteDatabase.execSQL((String.format("INSERT INTO libraries1 (roomID,name,start_time,end_time,reserved_time) VALUES ('%s','%s','%s','%s','%s')",
+                    libraries[i][0],libraries[i][1],libraries[i][2],libraries[i][3],libraries[i][3])));
+        }
+
+
+    }
     public void createTable() {
         sqLiteDatabase.execSQL("CREATE TABLE IF NOT EXISTS reservations1" +
                 "(email TEXT ,name TEXT, roomid TEXT,end_time TEXT, start_time TEXT, date TEXT)");
-    }
+
+        }
+
+
+
+
 // Function to create the users table
 
 //    public void onSignup(String username, String password){
@@ -63,6 +101,24 @@ public class DBHelper {
         playerMap.put("start_time",startime);
         playerMap.put("end_time",endtime);
         docRef.update("Past Bookings", FieldValue.arrayUnion(playerMap));
+    }
+    public int getOne(){
+        String date = "";
+        int count = 0;
+        Cursor c = sqLiteDatabase.rawQuery(String.format("SELECT * FROM libraries1"),null);
+        c.moveToFirst();
+        while(!c.isAfterLast()){
+            count = count + 1;
+            c.moveToNext();
+
+
+
+        }
+
+        c.close();
+        sqLiteDatabase.close();
+        return count;
+
     }
     public void onAddData(String email,String name, String roomID, String startTime, String endTime, String date){
         createTable();
@@ -145,3 +201,26 @@ public class DBHelper {
 //        return currHash;
 //    }
 }
+
+//    Mem379	Memorial Library	9:00	22:00	09:00-10:30,12:00-14:00,14:00-16:00
+//        Mem477	Memorial Library	9:00	22:00	10:00-13:00,13:00-14:00,17:00-18:00,20:00-22:00
+//        Mem479	Memorial Library	9:00	22:00	09:00-11:00,15:00-17:00
+//        Mem777	Memorial Library	9:00	22:00	10:00-12:00,12:30-14:00
+//        Mem779	Memorial Library	9:00	22:00	09:30-12:00,14:00-16:00,16:00-18:00
+//        Col2203	College Library	7:30	0:00	09:00-10:00,10:00-13:00,16:00-17:15
+//        Col2205	College Library	7:30	0:00	09:00-11:00,15:00-17:00
+//        Col2217	College Library	7:30	0:00	09:30-10:00,12:00-14:15,17:00-20:00
+//        Col2258	College Library	7:30	0:00	10:00-12:00,13:00-15:30,17:00-19:00,19:00-22:00
+//        Col3203	College Library	7:30	0:00	10:00-12:00,12:30-14:00,14:00-17:15
+//        Ste101	Steenbock Library	9:00	22:00	09:00-10:30,14:00-16:00
+//        Ste103	Steenbock Library	9:00	22:00	08:00-10:00,10:00-13:00,16:00-17:15
+//        Ste108	Steenbock Library	9:00	22:00	10:00-13:00,13:00-14:00,17:00-18:00,20:00-22:00
+//        Ste111	Steenbock Library	9:00	22:00	09:00-12:00,12:30-14:00,15:00-16:15
+//        Ste115	Steenbock Library	9:00	22:00	09:30-12:00,14:00-16:00,16:00-18:00
+//        Bus2111	Business Library	8:00	23:00	10:00-12:00,13:00-15:30,17:00-19:00,19:00-21:30
+//        Bus2135	Business Library	8:00	23:00	10:00-12:00,12:30-14:00,14:00-17:15
+//        Bus2210D	Business Library	8:00	23:00	09:00-10:30,14:00-16:00,17:00-18:30
+//        Bus3210C	Business Library	8:00	23:00	09:00-10:00,10:00-13:00,16:00-17:15
+//        Bus3210G	Business Library	8:00	23:00	10:00-13:00,13:00-14:00,15:00-17:30,17:30-19:00,20:00-22:00
+//        Soc142	Social Work Library	8:30	18:00	09:00-10:30,14:00-16:00,17:00-18:00
+//        Soc143	Social Work Library	8:30	18:00	09:30-10:00,10:30-13:30,13:30-16:00,16:00-17:15
