@@ -6,15 +6,11 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.opencsv.CSVReader;
-
-import java.io.FileReader;
-import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
@@ -29,12 +25,20 @@ public class CSVRead {
     List<String> times = new ArrayList<>(26);
     HashMap<Integer, String> map = new HashMap<>();
 
-    public List<String> getReservedTimes() {
-        return reservedTimes;
+    public HashMap<Integer, String> getMap() {
+        return map;
+    }
+
+    public void setMap(HashMap<Integer, String> map) {
+        this.map = map;
     }
 
     public List<String> getTimes() {
         return times;
+    }
+
+    public List<String> getIntervals() {
+        return intervals;
     }
 
     public void readCSV(InputStream stream) {
@@ -92,7 +96,6 @@ in the list will be blocked in red color.
     public void updateReservations(String room) {
         int index = getCSVRow(room);
         String[] arr = reservedTimes.get(index).split(","); // all reserved ranges for one room
-        //String[] arr = {"09:00-10:30","12:00-14:00","14:00-16:00"};
         List<String> allBookedPositions = new ArrayList<>();
         for (String str : arr) {
             String[] curr = str.split("-");

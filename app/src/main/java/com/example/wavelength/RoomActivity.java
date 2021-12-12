@@ -1,6 +1,8 @@
 package com.example.wavelength;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
@@ -18,7 +20,13 @@ import android.widget.NumberPicker;
 import android.widget.TextView;
 import android.widget.TimePicker;
 
+import java.sql.Time;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Locale;
 
 public class RoomActivity extends AppCompatActivity {
@@ -30,7 +38,7 @@ public class RoomActivity extends AppCompatActivity {
     int startHour, startMinute;
     int endHour, endMinute;
     private DatePickerDialog datePickerDialog;
-
+    CSVRead read = new CSVRead();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -58,13 +66,9 @@ public class RoomActivity extends AppCompatActivity {
         startTime = (TextView)findViewById(R.id.start_text);
         endTime = (TextView)findViewById(R.id.end_text);
 
-        CSVRead read = new CSVRead();
         read.readCSV(getResources().openRawResource(R.raw.roomdata));
         read.updateReservations(roomNameStr);
         read.updateSchedule(findViewById(R.id.recyclerview), this);
-
-
-
     }
 
     public void showStartTimePicker(View view)
@@ -99,13 +103,14 @@ public class RoomActivity extends AppCompatActivity {
                 endMinute = selectedMinute;
                 fixEndMinute();
                 endTime.setText(String.format(Locale.getDefault(), "%02d:%02d", endHour, endMinute));
+                addUpdatedInterval();
+
+
             }
         };
 
         int style = AlertDialog.THEME_HOLO_DARK;
-
         TimePickerDialog timePickerDialog = new TimePickerDialog(this, style, onTimeSetListener, endHour, endMinute, true);
-
         timePickerDialog.setTitle("Select End Time");
         timePickerDialog.show();
     }
@@ -180,5 +185,87 @@ public class RoomActivity extends AppCompatActivity {
         month = month + 1;
         int day = cal.get(Calendar.DAY_OF_MONTH);
         return month + "/" + day + "/" + year;
+    }
+
+    public void addUpdatedInterval() {
+        String startStr = "";
+        String endStr = "";
+
+        if (startMinute == 0) {
+            startStr = startHour + ":" + startMinute + "0";
+        }
+        else {
+            startStr = startHour + ":" + startMinute;
+        }
+
+        if (endMinute == 0) {
+            endStr = endHour + ":" + endMinute + "0";
+        }
+        else {
+            endStr = endHour + ":" + endMinute;
+        }
+        if (startHour < 10) {
+            startStr = "0" + startStr;
+        }
+        if (endHour < 10) {
+            endStr = "0" + endStr;
+        }
+
+        // if the library is not open, throw an alert dialog
+        if (startHour < 9 || startHour > 22 || endHour > 22 || endHour < 9) {
+            TimeBoundDialog timeBoundDialog = new TimeBoundDialog();
+            timeBoundDialog.show(getSupportFragmentManager(), "Alert Dialog");
+        }
+        Log.d("start", startStr);
+        Log.d("end", endStr);
+        List<String> l_times = read.getTimes();
+        HashMap<Integer, String> hmap = read.getMap();
+        DateTimeFormatter df = DateTimeFormatter.ofPattern("HH:mm");
+        LocalTime lt = LocalTime.parse(startStr);
+        List<String> updatedReserve = new ArrayList<>(); // intervals that the user has booked
+        // this may or not be already filled. We need to check
+        while (!lt.toString().equals(endStr)) {
+            updatedReserve.add(lt.toString());
+            lt = lt.plusMinutes(30);
+        }
+        int i = 0;
+        boolean conflict = false; // is there a conflict in reservation
+        for (String s : l_times) {
+            // update the hashmap if there are no conflicts
+            if (updatedReserve.contains(s) && hmap.get(i) == null) {
+                hmap.put(i, "New");
+            }
+            // if room is already reserved, display an alert dialog box
+            else if (updatedReserve.contains(s) && hmap.get(i) != null) {
+                conflict = true;
+                BoxDialog dialog = new BoxDialog();
+                dialog.show(getSupportFragmentManager(), "Alert Dialog");
+            }
+            i++;
+        }
+
+        // this boolean variable prevents from reserving blocks that have a conflict
+        if (!conflict) {
+            LinearLayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
+            RecyclerView recyclerview = findViewById(R.id.recyclerview);
+            recyclerview.setLayoutManager(layoutManager);
+            DataAdapter adapter = new DataAdapter(read.getIntervals(), read.getTimes(), this, read.getMap());
+            recyclerview.setAdapter(adapter);
+        }
+        else {
+            for (Integer num : hmap.keySet()) {
+                if (hmap.get(num) != null && hmap.get(num).equals("New")) {
+                    hmap.put(num, null);
+                }
+            }
+            LinearLayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
+            RecyclerView recyclerview = findViewById(R.id.recyclerview);
+            recyclerview.setLayoutManager(layoutManager);
+            DataAdapter adapter = new DataAdapter(read.getIntervals(), read.getTimes(), this, read.getMap());
+            recyclerview.setAdapter(adapter);
+        }
+
+
+        Log.d("yello", hmap.toString());
     }
 }

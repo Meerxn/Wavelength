@@ -19,7 +19,6 @@ public class DataAdapter extends RecyclerView.Adapter<DataAdapter.ViewHolder>{
     private List<String> interval_boxes;
     private List<String> times;
     private Context mContext;
-    CSVRead read = new CSVRead();
     HashMap<Integer, String> positionMap;
     public DataAdapter(List<String> interval_boxes, List<String> times, Context mContext,
                        HashMap<Integer, String> positionMap) {
@@ -41,10 +40,12 @@ public class DataAdapter extends RecyclerView.Adapter<DataAdapter.ViewHolder>{
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Log.d("HELLO", "onBindViewHolder: called.");
-
         CardView cardView = new CardView(mContext);
-        if (positionMap.get(position) != null) {
-            holder.interval_box.setBackgroundColor(Color.parseColor("#EB4E42"));
+        if (positionMap.get(position) != null && positionMap.get(position).equals("New")) {
+            holder.interval_box.setBackgroundColor(Color.parseColor("#FFBF00"));
+        }
+        else if (positionMap.get(position) != null) {
+            holder.interval_box.setBackgroundColor(Color.parseColor("#FF0000"));
         }
         else {
             holder.interval_box.setBackgroundColor(Color.parseColor("#FFFFFF"));
@@ -68,10 +69,6 @@ public class DataAdapter extends RecyclerView.Adapter<DataAdapter.ViewHolder>{
             interval_box = itemView.findViewById(R.id.interval_box);
             time = itemView.findViewById(R.id.time);
         }
-    }
-
-    private boolean getIntervals() {
-        return false;
     }
 }
 
