@@ -39,7 +39,7 @@ public class SignupActivity extends AppCompatActivity {
 
         Context context = getApplicationContext();
         SQLiteDatabase sqLiteDatabase = context.openOrCreateDatabase("users", Context.MODE_PRIVATE, null);
-        DBHelper dbHelper = new DBHelper(sqLiteDatabase);
+        //DBHelper dbHelper = new DBHelper(sqLiteDatabase);
         String usr = usernamebox.getText().toString();
         String password = passwordbox.getText().toString();
         String email = usernamebox.getText().toString();
@@ -60,7 +60,7 @@ public class SignupActivity extends AppCompatActivity {
                         }
                     }
                 });
-        dbHelper.onSignup(usr, password);
+        //dbHelper.onSignup(usr, password);
 
 
         Intent intent  = new Intent(this, MainActivity.class);

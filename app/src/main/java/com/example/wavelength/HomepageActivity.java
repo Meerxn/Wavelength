@@ -25,6 +25,7 @@ public class HomepageActivity extends AppCompatActivity {
     private TextView welcome;
     private TextView roomName;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,9 +39,10 @@ public class HomepageActivity extends AppCompatActivity {
         actionBar.setCustomView(view);
 
         bottomNavigationView = findViewById(R.id.bottomnav);
-        //bottomNavigationView.setOnItemSelectedListener(bottomnavFunction);
+        bottomNavigationView.setOnItemSelectedListener(bottomnavFunction);
+//        Log.i("switched to home fragment", "home page fragment");
 
-
+        getSupportFragmentManager().beginTransaction().replace(R.id.container, new HomeFragment()).commit();
     }
 
 
@@ -86,13 +88,21 @@ public class HomepageActivity extends AppCompatActivity {
     private NavigationBarView.OnItemSelectedListener bottomnavFunction = new NavigationBarView.OnItemSelectedListener() {
         @Override
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+            Log.i("navbar", "Listening for select on nav bar");
             Fragment fragment = null;
             switch (item.getItemId()){
                 case R.id.home:
                     fragment = new HomeFragment();
                     break;
+                case R.id.maps:
+                    fragment = new MapsFragment();
+                    break;
+                case R.id.reservation:
+                    fragment = new ReservationFragment();
+                    break;
             }
             getSupportFragmentManager().beginTransaction().replace(R.id.container, fragment).commit();
+
             return true;
         }
     };
