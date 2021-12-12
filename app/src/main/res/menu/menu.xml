@@ -15,8 +15,8 @@
         android:title="Reservations"
         android:icon="@drawable/ic_reservation" />
 
-    <item
-        android:id="@+id/profile"
-        android:title="Profile"
-        android:icon="@drawable/ic_profile" />
+<!--    <item-->
+<!--        android:id="@+id/profile"-->
+<!--        android:title="Profile"-->
+<!--        android:icon="@drawable/ic_profile" />-->
 </menu>
