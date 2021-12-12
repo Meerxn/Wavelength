@@ -27,6 +27,7 @@ public class CSVRead {
     List<String> reservedTimes = new ArrayList<>();;
     List<String> intervals = new ArrayList<>(26);
     List<String> times = new ArrayList<>(26);
+    HashMap<Integer, String> map = new HashMap<>();
 
     public List<String> getReservedTimes() {
         return reservedTimes;
@@ -50,11 +51,53 @@ public class CSVRead {
                 reservedTimes.add(nextLine[4]);
             }
 
-
+            // populate all the times
+            times.add("09:00");times.add("09:30"); times.add("10:00");
+            times.add("10:30"); times.add("11:00");times.add("11:30"); times.add("12:00");
+            times.add("12:30"); times.add("13:00");times.add("13:30"); times.add("14:00");
+            times.add("14:30"); times.add("15:00");times.add("15:30");times.add("16:00");
+            times.add("16:30");times.add("17:00");times.add("17:30"); times.add("18:00");
+            times.add("18:30");times.add("19:00"); times.add("19:30");times.add("20:00");
+            times.add("20:30"); times.add("21:00");times.add("21:30");times.add("22:00");
         }
         catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    /*
+This method goes through all the time intervals and creates a list of
+all 30 minute slots that are reserved. These 30 minute time slots that are
+in the list will be blocked in red color.
+ */
+    public void updateReservations() {
+        Log.d("CHECKKK", reservedTimes.toString());
+        String[] arr = reservedTimes.get(15).split(","); // all reserved ranges for one room
+        //String[] arr = {"09:00-10:30","12:00-14:00","14:00-16:00"};
+        List<String> allBookedPositions = new ArrayList<>();
+        for (String str : arr) {
+            String[] curr = str.split("-");
+            String start = curr[0];
+            String end = curr[1];
+            DateTimeFormatter df = DateTimeFormatter.ofPattern("HH:mm");
+            LocalTime lt = LocalTime.parse(start);
+            while (!lt.toString().equals(end)) {
+                allBookedPositions.add(lt.toString());
+                lt = lt.plusMinutes(30);
+            }
+        }
+
+        int i = 0;
+        for (String str : times) {
+            if (allBookedPositions.contains(str)) {
+                map.put(i, str);
+            }
+            else {
+                map.put(i, null);
+            }
+            i++;
+        }
+        Log.d("MAP1", map.toString());
     }
 
 
