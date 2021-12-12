@@ -49,6 +49,17 @@
                 android:background="@android:color/black"
                 app:layout_constraintTop_toBottomOf="@id/roomName" />
 
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerview"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:orientation="horizontal"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="1.0" />
             <TextView
                 android:id="@+id/date_text"
                 android:layout_width="wrap_content"
@@ -150,17 +161,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/endTime"
                 app:layout_constraintVertical_bias="0.0" />
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recyclerview"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:orientation="horizontal"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.0" />
+
 
             <View
                 android:id="@+id/top_line"
@@ -194,6 +195,7 @@
                 android:backgroundTint="#D33D32"
                 android:fontFamily="@font/reem_kufi"
                 android:text="Book Room"
+                android:onClick="navConf"
                 android:textColor="@color/white"
                 android:textSize="12sp"
                 app:layout_constraintStart_toStartOf="parent"

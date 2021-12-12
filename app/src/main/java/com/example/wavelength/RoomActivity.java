@@ -18,8 +18,16 @@ import android.widget.NumberPicker;
 import android.widget.TextView;
 import android.widget.TimePicker;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.FileWriter;
+
+import java.io.IOException;
+import java.io.OutputStreamWriter;
+import java.nio.file.Path;
 import java.util.Calendar;
 import java.util.Locale;
+import com.opencsv.CSVWriter;
 
 public class RoomActivity extends AppCompatActivity {
     TextView libName;
@@ -29,7 +37,9 @@ public class RoomActivity extends AppCompatActivity {
     TextView endTime;
     int startHour, startMinute;
     int endHour, endMinute;
+    String libNameStr, roomNameStr;
     private DatePickerDialog datePickerDialog;
+    CSVRead read = new CSVRead();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,8 +57,8 @@ public class RoomActivity extends AppCompatActivity {
         libName = (TextView) findViewById(R.id.libName);
         roomName = (TextView) findViewById(R.id.roomName);
         Intent intent = getIntent();
-        String libNameStr = intent.getStringExtra("libName").split(", ")[0];
-        String roomNameStr = intent.getStringExtra("libName").split(", ")[1];
+        libNameStr = intent.getStringExtra("libName").split(", ")[0];
+        roomNameStr = intent.getStringExtra("libName").split(", ")[1];
         libName.setText(libNameStr);
         roomName.setText("Room: " + roomNameStr);
 
@@ -58,7 +68,7 @@ public class RoomActivity extends AppCompatActivity {
         startTime = (TextView)findViewById(R.id.start_text);
         endTime = (TextView)findViewById(R.id.end_text);
 
-        CSVRead read = new CSVRead();
+
         read.readCSV(getResources().openRawResource(R.raw.roomdata));
         read.updateReservations(roomNameStr);
         read.updateSchedule(findViewById(R.id.recyclerview), this);
@@ -148,6 +158,7 @@ public class RoomActivity extends AppCompatActivity {
     }
 
     public void showDatePickerDialog(View view){
+        Log.d("DATE PICKER", "HELLO DATE PICKER");
         DatePickerDialog.OnDateSetListener dateSetListener = new DatePickerDialog.OnDateSetListener()
         {
             @Override
@@ -181,4 +192,50 @@ public class RoomActivity extends AppCompatActivity {
         int day = cal.get(Calendar.DAY_OF_MONTH);
         return month + "/" + day + "/" + year;
     }
+
+    public void navConf(View view){
+        //writeCSV();
+        Intent intent = new Intent(this, ConfActivity.class);
+        intent.putExtra("library", libNameStr + " - ");
+        intent.putExtra("room", roomNameStr);
+        intent.putExtra("startTime", addZeroHour(startHour) + ":" + addZeroMin(startMinute));
+        intent.putExtra("endTime", addZeroHour(endHour) + ":" + addZeroMin(endMinute));
+        Log.d("DATE FROM ROOM", date.getText().toString());
+        intent.putExtra("dayStr", date.getText().toString());
+        startActivity(intent);
+    }
+
+    public String addZeroHour(int hour){
+        if(String.valueOf(hour).length() == 1){
+            return "0" + hour;
+        }
+        return String.valueOf(hour);
+    }
+
+    public String addZeroMin(int min){
+        if(min == 0){
+            return "0" + min;
+        }
+        return String.valueOf(min);
+    }
+
+    public void writeCSV(){
+        try {
+            Log.d("Write csv", "write csv");
+            FileOutputStream fileOutputStream = openFileOutput(getResources().
+                    openRawResource(R.raw.roomdata).toString(), Context.MODE_PRIVATE);
+            OutputStreamWriter outputStreamWriter = new OutputStreamWriter(fileOutputStream);
+            int index = read.getCSVRow(roomNameStr);
+
+            String curr = read.getReservedTimes().get(index);
+            curr += "," + addZeroHour(startHour) + ":" + addZeroMin(startMinute) + "-" +
+                    addZeroHour(endHour) + ":" + addZeroMin(endMinute);
+            read.getReservedTimes().set(index, curr);
+            Log.d("reserved times", read.getReservedTimes().toString());
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
+    }
+
 }
