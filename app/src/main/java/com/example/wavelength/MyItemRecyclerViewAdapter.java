@@ -18,9 +18,9 @@ import java.util.List;
  */
 public class MyItemRecyclerViewAdapter extends RecyclerView.Adapter<MyItemRecyclerViewAdapter.ViewHolder> {
 
-    private final List<PlaceholderItem> mValues;
+    private final List<Reservation> mValues;
 
-    public MyItemRecyclerViewAdapter(List<PlaceholderItem> items) {
+    public MyItemRecyclerViewAdapter(List<Reservation> items) {
         mValues = items;
     }
 
@@ -34,9 +34,9 @@ public class MyItemRecyclerViewAdapter extends RecyclerView.Adapter<MyItemRecycl
     @Override
     public void onBindViewHolder(final ViewHolder holder, int position) {
         holder.mItem = mValues.get(position);
-        holder.mIdView.setText(mValues.get(position).roomid);
-        holder.mContentView.setText(mValues.get(position).roomid+" "+mValues.get(position).starttime+" "+mValues.get(position).endtime+
-                " "+mValues.get(position).name+" "+mValues.get(position).date);
+        holder.mIdView.setText(mValues.get(position).getRoomID());
+        holder.mContentView.setText(mValues.get(position).getRoomID()+" "+mValues.get(position).getStartTime()+" "+mValues.get(position).getEndTime()+
+                " "+mValues.get(position).getLibraryName()+" "+mValues.get(position).getDate());
     }
 
     @Override
@@ -48,7 +48,7 @@ public class MyItemRecyclerViewAdapter extends RecyclerView.Adapter<MyItemRecycl
         public final TextView mIdView;
         public final TextView mContentView;
         //public final TextView mStartTimeView;
-        public PlaceholderItem mItem;
+        public Reservation mItem;
 
         public ViewHolder(FragmentReservationBinding binding) {
             super(binding.getRoot());

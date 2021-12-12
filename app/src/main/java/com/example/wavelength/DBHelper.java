@@ -66,7 +66,7 @@ public class DBHelper {
     }
     public void onAddData(String email,String name, String roomID, String startTime, String endTime, String date){
         createTable();
-        sqLiteDatabase.execSQL((String.format("INSERT INTO reservations_table (email,name,roomid,end_time,start_time,date) VALUES ('%s','%s','%s','%s','%s','%s')",
+        sqLiteDatabase.execSQL((String.format("INSERT INTO reservations1 (email,name,roomid,end_time,start_time,date) VALUES ('%s','%s','%s','%s','%s','%s')",
                 email,name,roomID,endTime,startTime,date)));
     }
     public void getData(String email,String name, String roomID, String startTime, String endTime, String date){
