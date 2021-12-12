@@ -42,6 +42,11 @@ public class HomepageActivity extends AppCompatActivity {
         bottomNavigationView.setOnItemSelectedListener(bottomnavFunction);
 //        Log.i("switched to home fragment", "home page fragment");
 
+//        welcome = (TextView) findViewById(R.id.header_homepage);
+//        Intent intent = getIntent();
+//        String message = intent.getStringExtra("username");
+//        welcome.setText("Hello "+ message+ "!");
+
         getSupportFragmentManager().beginTransaction().replace(R.id.container, new HomeFragment()).commit();
     }
 
