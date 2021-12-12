@@ -71,6 +71,9 @@ public class HomepageActivity extends AppCompatActivity {
                 case R.id.maps:
                     fragment = new MapsFragment();
                     break;
+                case R.id.reservation:
+                    fragment = new ReservationFragment();
+                    break;
             }
             getSupportFragmentManager().beginTransaction().replace(R.id.container, fragment).commit();
             return true;
