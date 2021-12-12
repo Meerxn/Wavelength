@@ -15,7 +15,7 @@
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
-        android:label="@string/app_name"
+        android:label=""
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Wavelength">
@@ -33,6 +33,12 @@
             android:value="@string/google_maps_key" />
 
         <activity
+            android:name=".ConfActivity"
+            android:exported="true" />
+        <activity
+            android:name=".RoomActivity"
+            android:exported="true" />
+        <activity
             android:name=".HomepageActivity"
             android:exported="true" />
         <activity
@@ -47,6 +53,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <meta-data
+            android:name="preloaded_fonts"
+            android:resource="@array/preloaded_fonts" />
     </application>
 
 </manifest>

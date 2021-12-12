@@ -11,42 +11,20 @@
         android:layout_height="match_parent">
 
 
-        <TextView
-            android:id="@+id/header_frag"
-            android:layout_width="411dp"
-            android:layout_height="48dp"
-            android:background="#CA584A"
-            android:paddingTop="10dp"
-            android:text=""
-            android:textAlignment="center"
-            android:textColor="@color/white"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
         <EditText
             android:id="@+id/searchbar"
             android:layout_width="match_parent"
             android:layout_height="40dp"
             android:layout_margin="5dp"
-            android:layout_marginStart="5dp"
-            android:layout_marginTop="60dp"
-            android:layout_marginEnd="4dp"
             android:drawableLeft="@drawable/ic_search"
             android:ems="10"
             android:gravity="center"
-            app:layout_constraintEnd_toEndOf="@id/header_frag"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="@id/header_frag"
-            app:layout_constraintTop_toBottomOf="@+id/header_frag" />
-
-        <ImageView
-            android:id="@+id/logo2"
-            android:layout_width="62dp"
-            android:layout_height="48dp"
-            android:src="@drawable/logo2"
+            tools:layout_editor_absoluteX="5dp"
+            tools:layout_editor_absoluteY="53dp"
+            app:layout_constraintBottom_toTopOf="@+id/available"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
 
         <TextView
             android:id="@+id/available"
@@ -150,8 +128,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="28dp"
-            android:text="Grainger Library"
+            android:text="Business Library, Bus2111"
             android:textSize="10dp"
+            android:onClick="onRoomClick"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/imageView2" />
