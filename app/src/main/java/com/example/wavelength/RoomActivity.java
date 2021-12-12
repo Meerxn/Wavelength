@@ -61,7 +61,10 @@ public class RoomActivity extends AppCompatActivity {
         endTime = (TextView)findViewById(R.id.end_text);
 
         CSVRead read = new CSVRead();
-        
+        read.readCSV(getResources().openRawResource(R.raw.data));
+        read.updateReservations();
+        read.updateSchedule(findViewById(R.id.recyclerview), this);
+
 
 
     }
