@@ -25,6 +25,7 @@ import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -32,6 +33,8 @@ import java.util.Map;
 public class MainActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private static final String TAG = "EmailPassword";
+    public static ArrayList<Reservation> notes = new ArrayList<>();;
+
     EditText usernamebox;
     EditText passwordbox;
     private ActivityResultLauncher<String> mPermissionResult = registerForActivityResult(
@@ -80,8 +83,15 @@ public class MainActivity extends AppCompatActivity {
     public void fireBaseLogin(View view){
         String email = usernamebox.getText().toString();
         String password = passwordbox.getText().toString();
-        DBHelper dbHelper = new DBHelper(mAuth);
-        Log.d("Here","xyz" + dbHelper.checkValue());
+        Context context = getApplicationContext();
+        SQLiteDatabase sqLiteDatabase = context.openOrCreateDatabase("notes", Context.MODE_PRIVATE,null);
+        DBHelper dbHelper = new DBHelper(mAuth,sqLiteDatabase);
+        dbHelper.onAddData(email,"Grainger", "001","5:00","5:30","2/10/2021");
+        dbHelper.onAddData(email,"College Library", "001","5:00","5:30","2/10/2021");
+        notes = dbHelper.readNotes(email);
+        for (Reservation note : notes){
+            Log.d("here",note.getLibraryName());
+        }
 
         //dbHelper.addData("CL001","December 8th 12:20:00", "December 8th 12:50:00","College Library");
 
