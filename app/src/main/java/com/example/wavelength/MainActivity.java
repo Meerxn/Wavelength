@@ -18,6 +18,12 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FieldValue;
+import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.util.HashMap;
+import java.util.Map;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -59,7 +65,12 @@ public class MainActivity extends AppCompatActivity {
     public void fireBaseLogin(View view){
         String email = usernamebox.getText().toString();
         String password = passwordbox.getText().toString();
-        //boolean success = dbHelper.onLogin(usernamebox.getText().toString(), passwordbox.getText().toString());
+        DBHelper dbHelper = new DBHelper(mAuth);
+        dbHelper.addData("CL001","December 8th 12:20:00", "December 8th 12:50:00","College Library");
+
+
+
+
         mAuth.signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
@@ -84,7 +95,6 @@ public class MainActivity extends AppCompatActivity {
 
         Context context = getApplicationContext();
         SQLiteDatabase sqLiteDatabase = context.openOrCreateDatabase("users", Context.MODE_PRIVATE, null);
-        DBHelper dbHelper = new DBHelper(sqLiteDatabase);
         String email = usernamebox.getText().toString();
         String password = passwordbox.getText().toString();
         //boolean success = dbHelper.onLogin(usernamebox.getText().toString(), passwordbox.getText().toString());
