@@ -290,7 +290,7 @@ public class RoomActivity extends AppCompatActivity {
     }
 
     public void navConf(View view){
-        //writeCSV();
+        writeCSV();
         Intent intent = new Intent(this, ConfActivity.class);
         intent.putExtra("library", libNameStr + " - ");
         intent.putExtra("room", roomNameStr);
@@ -317,17 +317,23 @@ public class RoomActivity extends AppCompatActivity {
 
     public void writeCSV(){
         try {
-            Log.d("Write csv", "write csv");
-            FileOutputStream fileOutputStream = openFileOutput(getResources().
-                    openRawResource(R.raw.roomdata).toString(), Context.MODE_PRIVATE);
-            OutputStreamWriter outputStreamWriter = new OutputStreamWriter(fileOutputStream);
-            int index = read.getCSVRow(roomNameStr);
+            Context context = getApplicationContext();
+            SQLiteDatabase sqLiteDatabase = context.openOrCreateDatabase("notes",Context.MODE_PRIVATE, null);
+            FirebaseAuth mauth = FirebaseAuth.getInstance();
+            DBHelper dbHelper = new DBHelper(mauth,sqLiteDatabase);
 
-            String curr = read.getReservedTimes().get(index);
-            curr += "," + addZeroHour(startHour) + ":" + addZeroMin(startMinute) + "-" +
+            Log.d("Write csv", "write csv");
+            String currRes = dbHelper.getResTime(roomNameStr);
+
+            Log.d("curr res", currRes);
+            currRes += "," + addZeroHour(startHour) + ":" + addZeroMin(startMinute) + "-" +
                     addZeroHour(endHour) + ":" + addZeroMin(endMinute);
-            read.getReservedTimes().set(index, curr);
-            Log.d("reserved times", read.getReservedTimes().toString());
+            Log.d("new res", currRes);
+            dbHelper.writeNewRes(currRes, roomNameStr);
+
+
+            /*read.getReservedTimes().set(index, curr);
+            Log.d("reserved times", read.getReservedTimes().toString());*/
         }
         catch(Exception e){
             e.printStackTrace();
