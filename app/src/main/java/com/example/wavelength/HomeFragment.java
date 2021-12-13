@@ -84,24 +84,25 @@ public class HomeFragment extends Fragment {
         recyclerview2.setLayoutManager(layoutManager2);
         RoomAdapter adapter2;
         libName = (TextView) getView().findViewById(R.id.location);
-        if(MapsFragment.closestLib.equals("Business Library")){
+        Log.d("closest", MapsFragment.closestLib);
+        if(MapsFragment.closestLib.equals("Business")){
             libName.setText("Closest Library: Business Library");
              adapter2 = new RoomAdapter(BusLibImages, BusinessLibrary);
         }
-        else if(MapsFragment.closestLib.equals("Steenbock Library")){
+        else if(MapsFragment.closestLib.equals("Steenbock")){
             libName.setText("Closest Library: Steenbock Library");
             adapter2 = new RoomAdapter(SteLibImages, SteenbockLibrary);
         }
-        else if(MapsFragment.closestLib.equals("College Library")){
+        else if(MapsFragment.closestLib.equals("College")){
             libName.setText("Closest Library: College Library");
             adapter2 = new RoomAdapter(ColLibImages, CollegeLibrary);
         }
-        else if(MapsFragment.closestLib.equals("Memorial Library")){
+        else if(MapsFragment.closestLib.equals("Memorial")){
             libName.setText("Closest Library: Memorial Library");
             adapter2 = new RoomAdapter(MemLibImages, MemorialLibrary);
         }
         else{
-            libName.setText("Closest Library: Social Work Library");
+            libName.setText("Closest Library: Social Work");
             adapter2 = new RoomAdapter(SocLibImages, SocialWorkLibrary);
         }
 
