@@ -86,6 +86,8 @@ public class CurrReservationFragment extends Fragment {
             } else {
                 recyclerView.setLayoutManager(new GridLayoutManager(context, mColumnCount));
             }
+            Reservation title = new Reservation("Your Current Reservations", "Your Current Reservations", "        Your Current Reservations", "Your Current Reservations", "Your Current Reservations", "Your Current Reservations");
+            res2.add(0, title);
             recyclerView.setAdapter(new MyItemRecyclerViewAdapter2(res2));
         }
         return view;

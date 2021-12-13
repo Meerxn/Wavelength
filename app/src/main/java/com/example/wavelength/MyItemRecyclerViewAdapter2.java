@@ -2,6 +2,7 @@ package com.example.wavelength;
 
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.graphics.Typeface;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -33,10 +34,16 @@ public class MyItemRecyclerViewAdapter2 extends RecyclerView.Adapter<MyItemRecyc
 
     @Override
     public void onBindViewHolder(final ViewHolder holder, int position) {
-        holder.mItem = mValues.get(position);
+        if (position == 0) {
+            holder.mContentView.setText(mValues.get(position).getRoomID());
+            holder.mContentView.setTypeface(Typeface.DEFAULT_BOLD);
+
+        } else {
+            holder.mItem = mValues.get(position);
         holder.mIdView.setText(mValues.get(position).getRoomID());
-        holder.mContentView.setText(mValues.get(position).getRoomID()+" "+mValues.get(position).getStartTime()+" "+mValues.get(position).getEndTime()+
-                " "+mValues.get(position).getLibraryName()+" "+mValues.get(position).getDate());
+        holder.mContentView.setText(mValues.get(position).getRoomID() + " " + mValues.get(position).getStartTime() + " " + mValues.get(position).getEndTime() +
+                " " + mValues.get(position).getLibraryName() + " " + mValues.get(position).getDate());
+        }
     }
 
     @Override

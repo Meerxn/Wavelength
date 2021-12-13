@@ -77,15 +77,16 @@
 
             <TextView
                 android:id="@+id/show_dialog"
-                android:layout_width="47dp"
-                android:layout_height="26dp"
-                android:layout_marginStart="158dp"
+                android:layout_width="82dp"
+                android:layout_height="23dp"
+                android:layout_marginStart="156dp"
                 android:minWidth="48dp"
                 android:minHeight="48dp"
                 android:onClick="showDatePickerDialog"
-                android:text="change"
+                android:text="change date"
                 android:textColor="#3733F9"
                 android:textSize="13sp"
+                android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/date_text" />
 

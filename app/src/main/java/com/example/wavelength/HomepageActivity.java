@@ -3,6 +3,8 @@ package com.example.wavelength;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Context;
 import android.content.Intent;
@@ -26,6 +28,7 @@ public class HomepageActivity extends AppCompatActivity {
     private TextView roomName;
 
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,24 +43,30 @@ public class HomepageActivity extends AppCompatActivity {
 
         bottomNavigationView = findViewById(R.id.bottomnav);
         bottomNavigationView.setOnItemSelectedListener(bottomnavFunction);
-//        Log.i("switched to home fragment", "home page fragment");
 
-//        welcome = (TextView) findViewById(R.id.header_homepage);
-//        Intent intent = getIntent();
-//        String message = intent.getStringExtra("username");
-//        welcome.setText("Hello "+ message+ "!");
+        //
+//        LinearLayoutManager layoutManager2 = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
+//        RecyclerView recyclerview2 = findViewById(R.id.recyclerview2);
+//        recyclerview2.setLayoutManager(layoutManager2);
+//        RoomAdapter adapter2 = new RoomAdapter(BusLibImages, BusinessLibrary);
+//        recyclerview2.setAdapter(adapter2);
+        //
 
-        getSupportFragmentManager().beginTransaction().replace(R.id.container, new HomeFragment()).commit();
+//        TextView t = (TextView) findViewById(R.id.RoomName_Home);
+//        t.setText("Jello");
+
+
+        getSupportFragmentManager().beginTransaction().replace(R.id.container, new HomeFragment(this)).commit();
+
+
     }
 
 
     public void onRoomClick(View view){
-
         Log.i("HELLO", "YOU HAVE ARRIVED");
-        roomName = (TextView) findViewById(R.id.textView9);
+        roomName = (TextView) findViewById(R.id.adapter_name);
         Log.i("ROOM NAME", roomName.getText().toString());
         goToRoomActivity(roomName.getText().toString());
-
     }
 
     public void goToRoomActivity(String roomName) {
@@ -97,7 +106,7 @@ public class HomepageActivity extends AppCompatActivity {
             Fragment fragment = null;
             switch (item.getItemId()){
                 case R.id.home:
-                    fragment = new HomeFragment();
+                    fragment = new HomeFragment(HomepageActivity.this);
                     break;
                 case R.id.maps:
                     fragment = new MapsFragment();

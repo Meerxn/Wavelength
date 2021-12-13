@@ -42,7 +42,7 @@ public class DataAdapter extends RecyclerView.Adapter<DataAdapter.ViewHolder>{
         Log.d("HELLO", "onBindViewHolder: called.");
         CardView cardView = new CardView(mContext);
         if (positionMap.get(position) != null && positionMap.get(position).equals("New")) {
-            holder.interval_box.setBackgroundColor(Color.parseColor("#FFBF00"));
+            holder.interval_box.setBackgroundColor(Color.parseColor("#59cf98"));
         }
         else if (positionMap.get(position) != null) {
             holder.interval_box.setBackgroundColor(Color.parseColor("#FF0000"));

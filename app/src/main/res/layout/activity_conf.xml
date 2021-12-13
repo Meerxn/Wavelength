@@ -63,7 +63,7 @@
         android:textSize="25sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.152"
+        app:layout_constraintHorizontal_bias="0.296"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/top_line"
         app:layout_constraintVertical_bias="0.131" />
@@ -79,7 +79,7 @@
         android:textSize="25sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@id/library"
         app:layout_constraintTop_toBottomOf="@id/top_line"
         app:layout_constraintVertical_bias="0.131" />
@@ -88,7 +88,7 @@
         android:id="@+id/confDate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="128dp"
+        android:layout_marginEnd="152dp"
         android:fontFamily="@font/reem_kufi"
         android:text="Date and Time"
         android:textColor="#000000"
@@ -96,13 +96,13 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/room"
-        app:layout_constraintVertical_bias="0.134" />
+        app:layout_constraintVertical_bias="0.142" />
 
     <TextView
         android:id="@+id/time"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="116dp"
+        android:layout_marginEnd="144dp"
         android:layout_marginBottom="80dp"
         android:fontFamily="@font/reem_kufi"
         android:text="Time"
@@ -111,21 +111,21 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/confDate"
-        app:layout_constraintVertical_bias="0.339" />
+        app:layout_constraintVertical_bias="0.346" />
 
     <Button
         android:id="@+id/button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        android:layout_marginEnd="104dp"
+        android:layout_marginEnd="120dp"
         android:layout_marginBottom="53dp"
-        android:text="Back to home"
         android:onClick="backToHome"
+        android:text="Back to home"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/time"
-        app:layout_constraintVertical_bias="0.7" />
+        app:layout_constraintVertical_bias="0.76" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

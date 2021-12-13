@@ -90,7 +90,7 @@ public class MainActivity extends AppCompatActivity {
         Context context = getApplicationContext();
         SQLiteDatabase sqLiteDatabase = context.openOrCreateDatabase("notes", Context.MODE_PRIVATE,null);
         DBHelper dbHelper = new DBHelper(mAuth,sqLiteDatabase);
-        //dbHelper.libInit();
+        dbHelper.libInit();
         Log.d("data Here", " " + dbHelper.getOne());
 //        dbHelper.onAddData(email,"Social", "001","5:00","5:30","2/10/2021");
 //        dbHelper.onAddData(email,"Memorial Library", "001","5:00","5:30","2/10/2021");
@@ -115,7 +115,7 @@ public class MainActivity extends AppCompatActivity {
                             Log.d(TAG, "signInWithEmail:success");
                             FirebaseUser user = mAuth.getCurrentUser();
                         } else {
-                            toHomepage(view,1);
+                            //toHomepage(view,1);
 
                             // If sign in fails, display a message to the user.
                             Log.w(TAG, "signInWithEmail:failure", task.getException());
