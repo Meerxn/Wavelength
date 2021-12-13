@@ -139,7 +139,7 @@ public class DBHelper {
     public int getOne(){
         String date = "";
         int count = 0;
-        Cursor c = sqLiteDatabase.rawQuery(String.format("SELECT * FROM libraries1"),null);
+        Cursor c = sqLiteDatabase.rawQuery(String.format("SELECT * FROM libraries2"),null);
         c.moveToFirst();
         while(!c.isAfterLast()){
             count = count + 1;

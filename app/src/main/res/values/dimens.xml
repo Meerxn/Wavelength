@@ -2,4 +2,5 @@
 <resources>
     <dimen name="interval_text_width">13dp</dimen>
     <dimen name="interval_text_height">76dp</dimen>
+    <dimen name="text_margin">16dp</dimen>
 </resources>

@@ -1,11 +1,13 @@
 package com.example.wavelength;
 import android.content.Context;
+import android.os.Build;
 import android.util.Log;
 
+import androidx.annotation.RequiresApi;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.opencsv.CSVReader;
+//import com.opencsv.CSVReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.time.LocalTime;
@@ -101,6 +103,7 @@ This method goes through all the time intervals and creates a list of
 all 30 minute slots that are reserved. These 30 minute time slots that are
 in the list will be blocked in red color.
  */
+    //@RequiresApi(api = Build.VERSION_CODES.O)
     public void updateReservations(String room) {
         int index = getCSVRow(room);
         String[] arr = reservedTimes.get(index).split(","); // all reserved ranges for one room
