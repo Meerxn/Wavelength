@@ -43,19 +43,25 @@ public class CSVRead {
 
     public List<String> getReservedTimes(){ return reservedTimes;}
 
-    public void readCSV(InputStream stream) {
+    public void readCSV(DBHelper dbHelper) {
         try {
-            CSVReader reader = new CSVReader(new InputStreamReader(stream));
+            ArrayList<Libraries> libList = dbHelper.getCurrent();
+            //CSVReader reader = new CSVReader(new InputStreamReader(stream));
             String[] nextLine;
 
             // populate our lists which will contain info about each room
-            while ((nextLine = reader.readNext()) != null) {
-                roomID.add(nextLine[0]);
-                libName.add(nextLine[1]);
-                openTime.add(nextLine[2]);
-                closeTime.add(nextLine[3]);
-                reservedTimes.add(nextLine[4]);
+            //while ((nextLine = reader.readNext()) != null) {
+                for (Libraries lib : libList){
+
+
+                roomID.add(lib.getRoomID());
+                libName.add(lib.getLibraryName());
+                openTime.add(lib.getStartTime());
+                closeTime.add(lib.getEndTime());
+                reservedTimes.add(lib.getReservationTime());
             }
+            Log.d("reserved", ""+reservedTimes);
+
 
             // populate all the times
             times.add("09:00");times.add("09:30"); times.add("10:00");

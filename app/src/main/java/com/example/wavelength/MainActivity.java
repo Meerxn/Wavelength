@@ -91,7 +91,7 @@ public class MainActivity extends AppCompatActivity {
         SQLiteDatabase sqLiteDatabase = context.openOrCreateDatabase("notes", Context.MODE_PRIVATE,null);
         DBHelper dbHelper = new DBHelper(mAuth,sqLiteDatabase);
         //dbHelper.libInit();
-        //Log.d("data Here", " " + dbHelper.getOne());
+        Log.d("data Here", " " + dbHelper.getOne());
 //        dbHelper.onAddData(email,"Social", "001","5:00","5:30","2/10/2021");
 //        dbHelper.onAddData(email,"Memorial Library", "001","5:00","5:30","2/10/2021");
 //        notes = dbHelper.readNotes(email);

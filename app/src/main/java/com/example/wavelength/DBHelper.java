@@ -42,8 +42,9 @@ public class DBHelper {
         this.sqLiteDatabase = sqLiteDatabase;
 
     }
+
     public void libInit(){
-        sqLiteDatabase.execSQL("CREATE TABLE IF NOT EXISTS libraries1" +
+        sqLiteDatabase.execSQL("CREATE TABLE IF NOT EXISTS libraries2" +
                 "(roomID TEXT ,name TEXT, start_time TEXT,end_time TEXT,reserved_time Text)");
         String[][] libraries = {{"Mem379",	"Memorial Library"	,"9:00","22:00" , "09:00-10:30,12:00-14:00,14:00-16:00"},
                 {"Mem477"	,"Memorial Library","9:00",	"22:00","10:00-13:00,13:00-14:00,17:00-18:00,20:00-22:00"},
@@ -69,9 +70,42 @@ public class DBHelper {
                 {"Soc143","Social Work Library","8:30","18:00","09:30-10:00,10:30-13:30,13:30-16:00,16:00-17:15"},
         };
         for(int i = 0 ; i < libraries.length; i++){
-            sqLiteDatabase.execSQL((String.format("INSERT INTO libraries1 (roomID,name,start_time,end_time,reserved_time) VALUES ('%s','%s','%s','%s','%s')",
-                    libraries[i][0],libraries[i][1],libraries[i][2],libraries[i][3],libraries[i][3])));
+            sqLiteDatabase.execSQL((String.format("INSERT INTO libraries2 (roomID,name,start_time,end_time,reserved_time) VALUES ('%s','%s','%s','%s','%s')",
+                    libraries[i][0],libraries[i][1],libraries[i][2],libraries[i][3],libraries[i][4])));
         }
+
+
+    }
+    public ArrayList<Libraries> getCurrent(){
+        createTable();
+        Cursor c = sqLiteDatabase.rawQuery(String.format("SELECT * FROM libraries2"),null);
+        int nameIndex = c.getColumnIndex("name");
+        int roomIDIndex = c.getColumnIndex("roomID");
+        int startTimeIndex = c.getColumnIndex("start_time");
+        int endTimeIndex = c.getColumnIndex("end_time");
+        int reservedTimeIndex = c.getColumnIndex("reserved_time");
+
+
+        c.moveToFirst();
+        ArrayList<Libraries> notesList = new ArrayList<>();
+        while(!c.isAfterLast()){
+            String name = c.getString(nameIndex);
+            String roomID = c.getString(roomIDIndex);
+            String startTime = c.getString(startTimeIndex);
+
+            String endTime = c.getString(endTimeIndex);
+            String reservedTime = c.getString(reservedTimeIndex);
+            Libraries lib = new Libraries(roomID,name,startTime,endTime,reservedTime);
+            //public Libraries(String roomID, String name, String startTime, String endTime, String reservationTime){
+
+            notesList.add(lib);
+            c.moveToNext();
+
+
+        }
+        c.close();
+        sqLiteDatabase.close();
+        return notesList;
 
 
     }
