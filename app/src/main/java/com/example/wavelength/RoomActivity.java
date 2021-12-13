@@ -1,5 +1,6 @@
 package com.example.wavelength;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -12,6 +13,7 @@ import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -38,7 +40,7 @@ import java.util.List;
 import java.util.Locale;
 
 import com.google.firebase.auth.FirebaseAuth;
-import com.opencsv.CSVWriter;
+//import com.opencsv.CSVWriter;
 
 public class RoomActivity extends AppCompatActivity {
     TextView libName;
@@ -114,6 +116,7 @@ public class RoomActivity extends AppCompatActivity {
     {
         TimePickerDialog.OnTimeSetListener onTimeSetListener = new TimePickerDialog.OnTimeSetListener()
         {
+            @RequiresApi(api = Build.VERSION_CODES.O)
             @Override
             public void onTimeSet(TimePicker timePicker, int selectedHour, int selectedMinute)
             {
@@ -207,6 +210,7 @@ public class RoomActivity extends AppCompatActivity {
     }
 
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     public void addUpdatedInterval() {
         String startStr = "";
         String endStr = "";

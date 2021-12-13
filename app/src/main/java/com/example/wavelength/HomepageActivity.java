@@ -105,6 +105,9 @@ public class HomepageActivity extends AppCompatActivity {
                 case R.id.reservation:
                     fragment = new ReservationFragment();
                     break;
+                case R.id.currres:
+                    fragment = new CurrReservationFragment();
+                    break;
             }
             getSupportFragmentManager().beginTransaction().replace(R.id.container, fragment).commit();
 
