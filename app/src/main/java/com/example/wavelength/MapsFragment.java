@@ -37,7 +37,7 @@ public class MapsFragment extends Fragment {
     private final LatLng mDestinationLatLng = new LatLng(43.0757339, -89.4040064);
     private FusedLocationProviderClient mFusedLocationProviderClient;
 
-    public String closestLib;
+    public static String closestLib = "Business Library";
 
     LatLng memorial;
     LatLng college;

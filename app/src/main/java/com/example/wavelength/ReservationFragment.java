@@ -92,6 +92,8 @@ public class ReservationFragment extends Fragment {
             } else {
                 recyclerView.setLayoutManager(new GridLayoutManager(context, mColumnCount));
             }
+            Reservation title = new Reservation("Your Past Reservations", "Your Past Reservations", "            Your Past Reservations", "Your Past Reservations", "Your Past Reservations", "Your Past Reservations");
+            res.add(0, title);
             recyclerView.setAdapter(new MyItemRecyclerViewAdapter(res));
         }
         return view;
