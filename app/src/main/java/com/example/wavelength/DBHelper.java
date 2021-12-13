@@ -26,6 +26,7 @@ import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -164,7 +165,7 @@ public class DBHelper {
         sqLiteDatabase.execSQL((String.format(
                 email,name,roomID,endTime,startTime,date)));
     }
-    public ArrayList<Reservation> readNotes(String email){
+    public ArrayList<Reservation> readNotes(String email, boolean status){
         createTable();
         Cursor c = sqLiteDatabase.rawQuery(String.format("SELECT * FROM reservations1 where email like '%s'",email),null);
         int nameIndex = c.getColumnIndex("name");
@@ -172,6 +173,7 @@ public class DBHelper {
         int end_timeIndex = c.getColumnIndex("end_time");
         int start_timeIndex = c.getColumnIndex("start_time");
         int dateIndex = c.getColumnIndex("date");
+
         c.moveToFirst();
         ArrayList<Reservation> notesList = new ArrayList<>();
         while(!c.isAfterLast()){
@@ -180,8 +182,22 @@ public class DBHelper {
             String endTime = c.getString(end_timeIndex);
             String startTime = c.getString(start_timeIndex);
             String date = c.getString(dateIndex);
-            Reservation note = new Reservation(email,name,roomID,endTime,startTime,date);
-            notesList.add(note);
+            String tempDate = date.split("/")[1];
+            String currDate = todayDate().split("/")[1];
+
+            if (status == true){
+                if (Integer.parseInt(tempDate) >= Integer.parseInt(currDate)){
+                    Reservation note = new Reservation(email,name,roomID,endTime,startTime,date);
+                    notesList.add(note);
+                }
+            }
+            else if (status == false){
+                if (Integer.parseInt(tempDate) < Integer.parseInt(currDate)){
+                    Reservation note = new Reservation(email,name,roomID,endTime,startTime,date);
+                    notesList.add(note);
+                }
+            }
+
             c.moveToNext();
 
 
@@ -192,7 +208,15 @@ public class DBHelper {
 
 
     }
-
+    private String todayDate()
+    {
+        Calendar cal = Calendar.getInstance();
+        int year = cal.get(Calendar.YEAR);
+        int month = cal.get(Calendar.MONTH);
+        month = month + 1;
+        int day = cal.get(Calendar.DAY_OF_MONTH);
+        return month + "/" + day + "/" + year;
+    }
     public String getResTime(String roomID){
         String resTimes = "abc";
         Cursor c = sqLiteDatabase.rawQuery(String.format("SELECT * FROM libraries2 where roomID like '%s'",roomID),null);
