@@ -186,10 +186,30 @@ public class DBHelper {
 
 
         }
-        c.close();
-        sqLiteDatabase.close();
+       c.close();
+//        sqLiteDatabase.close();
         return notesList;
 
+
+    }
+
+    public String getResTime(String roomID){
+        String resTimes = "abc";
+        Cursor c = sqLiteDatabase.rawQuery(String.format("SELECT * FROM libraries2 where roomID like '%s'",roomID),null);
+
+        int roomIDIndex = c.getColumnIndex("reserved_time");
+        c.moveToFirst();
+
+        while(!c.isAfterLast()){
+            resTimes = c.getString(roomIDIndex);
+            c.moveToNext();
+        }
+        return resTimes;
+
+    }
+
+    public void writeNewRes(String newRes, String roomID){
+        sqLiteDatabase.execSQL(String.format("Update libraries2 Set reserved_time = '%s' Where roomID = '%s'", newRes, roomID));
 
     }
 //    public String checkValue(){

@@ -60,7 +60,7 @@ public class CSVRead {
                 closeTime.add(lib.getEndTime());
                 reservedTimes.add(lib.getReservationTime());
             }
-            Log.d("reserved", ""+reservedTimes);
+            Log.d("reserved", ""+roomID);
 
 
             // populate all the times
