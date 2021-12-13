@@ -40,6 +40,7 @@ public class ReservationFragment extends Fragment {
     public ReservationFragment() {
     }
 
+
     // TODO: Customize parameter initialization
     @SuppressWarnings("unused")
     public static ReservationFragment newInstance(int columnCount) {
@@ -63,10 +64,10 @@ public class ReservationFragment extends Fragment {
 
         Context context = this.getContext();
         SQLiteDatabase sqLiteDatabase = context.openOrCreateDatabase("notes", Context.MODE_PRIVATE,null);
-        DBHelper dbHelper = new DBHelper(auth,sqLiteDatabase);
-        dbHelper.onAddData(user.getEmail().toString(), "Grainger", "001","5:00","5:30","2/10/2021");
-        dbHelper.onAddData(user.getEmail().toString(),"College Library", "001","5:00","5:30","2/10/2021");
-        res = dbHelper.readNotes(user.getEmail().toString());
+//        DBHelper dbHelper = new DBHelper(auth,sqLiteDatabase);
+//        dbHelper.onAddData(user.getEmail().toString(), "Grainger", "001","5:00","5:30","2/10/2021");
+//        dbHelper.onAddData(user.getEmail().toString(),"College Library", "001","5:00","5:30","2/10/2021");
+//        res = dbHelper.readNotes(user.getEmail().toString());
         for (Reservation note : res){
             Log.d("here",note.getLibraryName());
         }

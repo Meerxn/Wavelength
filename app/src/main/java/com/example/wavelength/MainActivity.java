@@ -22,9 +22,9 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.firestore.DocumentReference;
-import com.google.firebase.firestore.FieldValue;
-import com.google.firebase.firestore.FirebaseFirestore;
+//import com.google.firebase.firestore.DocumentReference;
+//import com.google.firebase.firestore.FieldValue;
+//import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -56,16 +56,16 @@ public class MainActivity extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
 
         super.onCreate(savedInstanceState);
-        SharedPreferences sharedPreferences = getSharedPreferences("com.example.wavelength", Context.MODE_PRIVATE);
-        if(!sharedPreferences.getString("username", "").equals("")){
-            String storedname = sharedPreferences.getString("username", "");
+//        SharedPreferences sharedPreferences = getSharedPreferences("com.example.wavelength", Context.MODE_PRIVATE);
+//        if(!sharedPreferences.getString("username", "").equals("")){
+//            String storedname = sharedPreferences.getString("username", "");
             Intent intent = new Intent(this, HomepageActivity.class);
-            intent.putExtra("username", storedname);
+            intent.putExtra("username", "test");
             startActivity(intent);
-        }
-        else {
-            setContentView(R.layout.activity_main);
-        }
+        //}
+        //else {
+        //    setContentView(R.layout.activity_main);
+        //}
 
         usernamebox = (EditText) findViewById(R.id.username);
         passwordbox = (EditText) findViewById(R.id.password);
@@ -89,7 +89,7 @@ public class MainActivity extends AppCompatActivity {
 
         Context context = getApplicationContext();
         SQLiteDatabase sqLiteDatabase = context.openOrCreateDatabase("notes", Context.MODE_PRIVATE,null);
-        DBHelper dbHelper = new DBHelper(mAuth,sqLiteDatabase);
+        //DBHelper dbHelper = new DBHelper(mAuth,sqLiteDatabase);
         //dbHelper.libInit();
         //Log.d("data Here", " " + dbHelper.getOne());
 //        dbHelper.onAddData(email,"Social", "001","5:00","5:30","2/10/2021");

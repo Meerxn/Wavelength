@@ -7,6 +7,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.Manifest;
 import android.content.pm.PackageManager;
@@ -79,6 +80,7 @@ public class MapsFragment extends Fragment {
             displayMyLocation(googleMap);
         }
     };
+
 
     @Nullable
     @Override

@@ -3,6 +3,8 @@ package com.example.wavelength;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Context;
 import android.content.Intent;
@@ -25,6 +27,51 @@ public class HomepageActivity extends AppCompatActivity {
     private TextView welcome;
     private TextView roomName;
 
+    Integer[] imageId;
+    String[] imagesName;
+
+    Integer[] MemLibImages ={R.drawable.memorial_library1, R.drawable.memorial_library2, R.drawable.memorial_library3, R.drawable.memorial_library4, R.drawable.memorial_library5};
+    String[] MemorialLibrary = {
+            "Memorial Library, Mem379",
+            "Memorial Library, Mem477",
+            "Memorial Library, Mem479",
+            "Memorial Library, Mem777",
+            "Memorial Library, Mem779"
+    };
+
+    Integer[] ColLibImages ={R.drawable.college_library1, R.drawable.college_library2, R.drawable.college_library3, R.drawable.college_library4, R.drawable.college_library5};
+    String[] CollegeLibrary = {
+            "College Library, Col2203",
+            "College Library, Col2205",
+            "College Library, Col2217",
+            "College Library, Col2258",
+            "College Library, Col3203"
+    };
+
+    Integer[] SteLibImages ={R.drawable.steenbock_library1, R.drawable.steenbock_library2, R.drawable.steenbock_library3, R.drawable.steenbock_library4, R.drawable.steenbock_library5};
+    String[] SteenbockLibrary = {
+            "Steenbock Library, Ste101",
+            "Steenbock Library, Ste103",
+            "Steenbock Library, Ste108",
+            "Steenbock Library, Ste111",
+            "Steenbock Library, Ste115"
+    };
+
+    Integer[] BusLibImages ={R.drawable.business_library1, R.drawable.business_library2, R.drawable.business_library3, R.drawable.business_library4, R.drawable.business_library5};
+    String[] BusinessLibrary = {
+            "Businiess Library, Bus2111",
+            "Businiess Library, Bus2135",
+            "Businiess Library, Bus2210D",
+            "Businiess Library, Bus3210C",
+            "Businiess Library, Bus3210G"
+    };
+
+    Integer[] SocLibImages ={R.drawable.socialwork_library1, R.drawable.socialwork_library2};
+    String[] SocialWorkLibrary = {
+            "Social Work Library, Soc142",
+            "Social Work Library, Soc143",
+    };
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,14 +87,26 @@ public class HomepageActivity extends AppCompatActivity {
 
         bottomNavigationView = findViewById(R.id.bottomnav);
         bottomNavigationView.setOnItemSelectedListener(bottomnavFunction);
-//        Log.i("switched to home fragment", "home page fragment");
 
-//        welcome = (TextView) findViewById(R.id.header_homepage);
-//        Intent intent = getIntent();
-//        String message = intent.getStringExtra("username");
-//        welcome.setText("Hello "+ message+ "!");
+        //
+//        LinearLayoutManager layoutManager2 = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
+//        RecyclerView recyclerview2 = findViewById(R.id.recyclerview2);
+//        recyclerview2.setLayoutManager(layoutManager2);
+//        RoomAdapter adapter2 = new RoomAdapter(BusLibImages, BusinessLibrary);
+//        recyclerview2.setAdapter(adapter2);
+        //
+
+//        TextView t = (TextView) findViewById(R.id.RoomName_Home);
+//        t.setText("Jello");
+
 
         getSupportFragmentManager().beginTransaction().replace(R.id.container, new HomeFragment()).commit();
+
+        LinearLayoutManager layoutManager2 = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
+        RecyclerView recyclerview2 = findViewById(R.id.recyclerview2);
+        recyclerview2.setLayoutManager(layoutManager2);
+        RoomAdapter adapter2 = new RoomAdapter(BusLibImages, BusinessLibrary);
+        recyclerview2.setAdapter(adapter2);
     }
 
 
