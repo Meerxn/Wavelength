@@ -302,7 +302,7 @@ public class RoomActivity extends AppCompatActivity {
         String sTime = addZeroHour(startHour) + ":" + addZeroMin(startMinute);
         String eTime = addZeroHour(endHour) + ":" + addZeroMin(endMinute);
         String email = FirebaseAuth.getInstance().getCurrentUser().getEmail().toString();
-        dbHelper.onAddData( email,libNameStr,roomNameStr,sTime,eTime,date.getText().toString());
+        dbHelper.onAddData( email,libNameStr,roomNameStr,eTime,sTime,date.getText().toString());
 
         Intent intent = new Intent(this, ConfActivity.class);
         intent.putExtra("library", libNameStr + " - ");

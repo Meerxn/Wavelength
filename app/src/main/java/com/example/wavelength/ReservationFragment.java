@@ -66,7 +66,7 @@ public class ReservationFragment extends Fragment {
         DBHelper dbHelper = new DBHelper(auth,sqLiteDatabase);
 //        dbHelper.onAddData(user.getEmail().toString(), "Grainger", "001","5:00","5:30","2/10/2021");
 //        dbHelper.onAddData(user.getEmail().toString(),"College Library", "001","5:00","5:30","2/10/2021");
-        res = dbHelper.readNotes(user.getEmail().toString());
+        res = dbHelper.readNotes(user.getEmail().toString(),false);
         for (Reservation note : res){
             Log.d("here",note.getLibraryName());
         }
