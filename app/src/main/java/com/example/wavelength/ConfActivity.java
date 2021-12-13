@@ -47,4 +47,9 @@ public class ConfActivity extends AppCompatActivity {
 
 
     }
+
+    public void backToHome(View view){
+        Intent intent = new Intent(this, HomepageActivity.class);
+        startActivity(intent);
+    }
 }

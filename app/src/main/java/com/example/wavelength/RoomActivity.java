@@ -330,7 +330,7 @@ public class RoomActivity extends AppCompatActivity {
                     addZeroHour(endHour) + ":" + addZeroMin(endMinute);
             Log.d("new res", currRes);
             dbHelper.writeNewRes(currRes, roomNameStr);
-
+            read.readCSV(dbHelper);
 
             /*read.getReservedTimes().set(index, curr);
             Log.d("reserved times", read.getReservedTimes().toString());*/

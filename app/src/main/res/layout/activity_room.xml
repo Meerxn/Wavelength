@@ -167,7 +167,7 @@
                 android:id="@+id/top_line"
                 android:layout_width="0dp"
                 android:layout_height="1dp"
-                android:layout_marginTop="5dp"
+                android:layout_marginTop="7dp"
                 android:background="@color/black"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -178,7 +178,7 @@
                 android:id="@+id/bottom_line"
                 android:layout_width="0dp"
                 android:layout_height="1dp"
-                android:layout_marginTop="88dp"
+                android:layout_marginTop="89dp"
                 android:background="@color/black"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
@@ -189,18 +189,17 @@
                 android:id="@+id/bookButton"
                 android:layout_width="140dp"
                 android:layout_height="35dp"
-                android:layout_marginStart="105dp"
-                android:layout_marginTop="160dp"
+                android:layout_marginStart="108dp"
+                android:layout_marginTop="60dp"
                 android:background="@drawable/custom_rounded_corners"
                 android:backgroundTint="#D33D32"
                 android:fontFamily="@font/reem_kufi"
-                android:text="Book Room"
                 android:onClick="navConf"
+                android:text="Book Room"
                 android:textColor="@color/white"
                 android:textSize="12sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/bottom_line" />
-
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
