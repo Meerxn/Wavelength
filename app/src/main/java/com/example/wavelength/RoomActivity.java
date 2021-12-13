@@ -291,12 +291,22 @@ public class RoomActivity extends AppCompatActivity {
 
     public void navConf(View view){
         writeCSV();
+        Context context = getApplicationContext();
+        SQLiteDatabase sqLiteDatabase = context.openOrCreateDatabase("notes",Context.MODE_PRIVATE, null);
+        FirebaseAuth mauth = FirebaseAuth.getInstance();
+        DBHelper dbHelper = new DBHelper(mauth,sqLiteDatabase);
+        String sTime = addZeroHour(startHour) + ":" + addZeroMin(startMinute);
+        String eTime = addZeroHour(endHour) + ":" + addZeroMin(endMinute);
+        String email = FirebaseAuth.getInstance().getCurrentUser().getEmail().toString();
+        dbHelper.onAddData( email,libNameStr,roomNameStr,sTime,eTime,date.getText().toString());
+
         Intent intent = new Intent(this, ConfActivity.class);
         intent.putExtra("library", libNameStr + " - ");
         intent.putExtra("room", roomNameStr);
         intent.putExtra("startTime", addZeroHour(startHour) + ":" + addZeroMin(startMinute));
         intent.putExtra("endTime", addZeroHour(endHour) + ":" + addZeroMin(endMinute));
         Log.d("DATE FROM ROOM", date.getText().toString());
+
         intent.putExtra("dayStr", date.getText().toString());
         startActivity(intent);
     }
