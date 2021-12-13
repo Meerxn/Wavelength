@@ -9,6 +9,7 @@ import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -35,6 +36,8 @@ import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
+
+import com.google.firebase.auth.FirebaseAuth;
 import com.opencsv.CSVWriter;
 
 public class RoomActivity extends AppCompatActivity {
@@ -76,8 +79,12 @@ public class RoomActivity extends AppCompatActivity {
         startTime = (TextView)findViewById(R.id.start_text);
         endTime = (TextView)findViewById(R.id.end_text);
 
+        Context context = getApplicationContext();
+        SQLiteDatabase sqLiteDatabase = context.openOrCreateDatabase("notes",Context.MODE_PRIVATE, null);
+        FirebaseAuth mauth = FirebaseAuth.getInstance();
+        DBHelper dbHelper = new DBHelper(mauth,sqLiteDatabase);
 
-        read.readCSV(getResources().openRawResource(R.raw.roomdata));
+        read.readCSV(dbHelper);
         read.updateReservations(roomNameStr);
         read.updateSchedule(findViewById(R.id.recyclerview), this);
     }
